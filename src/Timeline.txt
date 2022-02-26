@@ -1,4 +1,8 @@
- 
+git command
+git clone (URL)
+
+
+
 ---------------------- 8-02-2002 ----------------------
 
 imp: "npm install react-icons --save" icon mate kryu 6e 😝😝😝
@@ -57,3 +61,7 @@ thi kai performance ma jajo frk ny pde 😅😅
     
 
     https://meet.google.com/qkz-wggn-skr
+
+
+
+
