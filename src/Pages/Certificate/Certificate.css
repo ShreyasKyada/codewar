@@ -1,0 +1,37 @@
+.skills-container {
+  box-sizing: border-box;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.skills-container p {
+  display: block;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+}
+
+.skills-container-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (max-width: 852px) {
+  .skills-container p {
+    font-size: .9rem;
+  }
+  .skills-container {
+    padding: 1rem;
+  }
+  .skills-container-grid {
+    grid-template-columns: 100%;
+    gap: 0;
+  }
+}

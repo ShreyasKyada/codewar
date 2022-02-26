@@ -1,0 +1,49 @@
+:root {
+  font-family: "Rubik", sans-serif;
+  box-sizing: border-box;
+  font-size: 30px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--light-text);
+  position: relative;
+  /* --transparent-color: #e6e6e685; */
+  /* --transparent-color: #ffffffb3; */
+  background-color: var(--mode);
+}
+
+body.light {
+  --mode: #f8f8f8;
+  --text-color: #000000;
+  --primary: #f44336;
+  --hover-color: #03cffc;
+  --transparent-color: rgba(255, 255, 255, 0.7);
+  --glass-border-color: rgba(0, 0, 0, 0.185);
+  --box-shadow: rgb(199, 199, 199);
+  --border-color: black;
+  --drawer-paper: rgba(255, 255, 255, 0.342);
+  --background-color: #f8f8f8;
+  --diactive-text-color: rgb(138, 142, 143);
+}
+
+body.dark {
+  --mode: #1e1e1e;
+  --text-color: white;
+  --primary: #f44336;
+  --hover-color: #03cffc;
+  --transparent-color: rgba(30, 30, 30, 0.6);
+  /* --glass-border-color: rgba(0, 0, 0, 0.226); */
+  --box-shadow: rgba(85, 85, 85, 0.836);
+  --border-color: white;
+  --glass-border-color: rgba(255, 255, 255, 0.125); 
+  --drawer-paper: rgba(0, 0, 0, 0.342);
+  --background-color: #1e1e1e;
+  --diactive-text-color: rgba(183, 201, 204, 0.3);
+}
+
+.router-links {
+  color: var(--text-color);
+  text-decoration: none;
+}

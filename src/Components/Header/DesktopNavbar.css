@@ -1,0 +1,241 @@
+.appbar {
+  background-color: var(--transparent-color) !important;
+  color: black !important;
+  font-size: 0.5rem;
+  box-shadow: none !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row !important;
+  border-bottom: 2px solid var(--light-border);
+  backdrop-filter: blur(8px) !important;
+  user-select: none;
+  border-bottom: 1px solid var(--glass-border-color);
+  position: relative;
+  height: 70px;
+}
+
+.progressbar-container {
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: -10px;
+}
+
+.header-logo {
+  /* height: 1.7rem;
+  width: 2.6rem; */
+  height: 3rem;
+  width: 7rem;
+  margin: 0.5rem 1rem 0.5rem 3rem;
+}
+
+.header-logo img {
+  height: 100%;
+  width: 100%;
+}
+
+.appbar-tab {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.appbar-links {
+  text-decoration: none;
+  margin: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+  color: var(--text-color);
+  transition: all 0.3s linear;
+}
+
+.active {
+  color: var(--hover-color);
+}
+
+.appbar-links:hover {
+  color: var(--hover-color);
+}
+
+/* btn container */
+.btn-container {
+  padding: 0 0.5rem 0 0;
+  position: relative;
+  color: var(--text-color);
+}
+
+.btn {
+  margin: 0 0.35rem !important;
+  font-size: 0.6rem !important;
+  float: right;
+}
+
+/* search box and theme and playground style */
+.searchbox-theme-playground-container {
+  flex-direction: row-reverse;
+}
+
+.icon-container,
+.searchbox-theme-playground-container,
+.search-box-container,
+.search-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box-container {
+  min-width: 5.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  position: relative;
+  margin-right: 0.3rem;
+  transition: all 0.2s linear;
+}
+
+.search-box-icon-container {
+  display: flex;
+  padding: 0.21rem 0.25rem;
+  transition: all 0.2s linear;
+}
+
+.search-icon {
+  top: 3px;
+  left: 3px;
+  height: 100%;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+.search-box {
+  width: 4.5rem;
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  padding: 0 0.3rem;
+  border: none;
+  background-color: transparent;
+  color: var(--text-color) !important;
+  transition: all 0.2s linear;
+}
+
+.search-box:focus {
+  width: 6.5rem !important;
+}
+
+.search-box-container:focus-within {
+  border: 1px solid var(--hover-color);
+  outline: 1px solid var(--hover-color);
+}
+
+.search-box-icon-container:focus-within {
+  box-shadow: var(--box-shadow);
+}
+
+.search-box-container:hover {
+  border: 1px solid var(--hover-color);
+}
+
+.search-box:focus-within {
+  outline: none;
+}
+
+.icon-container {
+  color: var(--text-color);
+  width: 1.6rem;
+}
+
+.theme-icon,
+.playground-icon {
+  font-size: 0.9rem !important;
+  cursor: pointer;
+}
+
+.theme-icon-moon {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Drop Down list style */
+.list-item-btn {
+  height: 1.5rem;
+  padding: 0 !important;
+  margin: 0 1rem 0 0 !important;
+  transition: 0.1s all linear !important;
+}
+
+.person-icon {
+  font-size: 1rem !important;
+  color: var(--text-color);
+}
+
+.list-item-btn:hover,
+.list-item-btn:hover .person-icon {
+  background-color: transparent !important;
+  color: var(--hover-color) !important;
+}
+
+.list-item-icon {
+  text-align: center !important;
+  justify-content: center;
+  transition: 1s all linear !important;
+}
+
+.list-item-text {
+  font-size: 0.6rem !important;
+  margin: 0;
+}
+
+.expand-less-icon {
+  font-size: 1rem !important;
+  margin: 0 0.2rem;
+}
+
+.list-item-icon {
+  font-size: 0.5rem !important;
+}
+
+.collapse {
+  position: absolute;
+  top: 1.9rem;
+  right: 1.4rem;
+  line-height: 0rem;
+}
+
+.list {
+  width: 100% !important;
+  background-color: var(--transparent-color) !important;
+}
+
+.list-button:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  height: 1.5px;
+  width: 82%;
+  left: 9%;
+  bottom: 0;
+  background-color: rgba(105, 105, 105, 0.356);
+}
+
+.list-button:last-child {
+  margin-bottom: 0.1rem !important;
+}
+
+.list-button:first-child:hover {
+  background-color: transparent !important;
+}
+
+.list-button {
+  line-height: 0rem;
+  padding: 6px 22px !important;
+  position: relative;
+}
+
+.score-btn {
+  font-size: 0.5rem !important;
+  margin: 0.5rem auto !important;
+  margin-top: 0.5rem !important;
+  width: 6.6rem !important;
+}
+
+.list-text {
+  font-size: 0.65rem;
+}

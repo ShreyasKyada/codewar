@@ -1,0 +1,78 @@
+.challenge-container {
+  width: 100%;
+  display: flex;
+  padding: 1rem 5%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.all-challenge-card-container {
+  max-width: 70%;
+  min-width: 63%;
+  padding: 0.5rem 0.9rem 0.5rem 2rem;
+}
+
+.check-box{ 
+    user-select: none;
+}
+
+.check-box-container {
+  width: 20%;
+  padding: 1.1rem 3rem 0.5rem 0rem;
+}
+
+/* Right side text box css */
+.MuiSvgIcon-root {
+  font-size: 0.9rem !important;
+}
+
+.MuiFormControlLabel-label {
+  font-size: 0.59rem !important;
+  letter-spacing: 1px !important;
+  color: var(--text-color);
+}
+
+.sorting-container {
+  height: 100%;
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.status-container,
+.skill-container,
+.difficulty-container {
+  width: 90%;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
+}
+
+.status-container,
+.skill-container {
+  border-bottom: 2px solid var(--glass-border-color);
+}
+
+.status-lable,
+.skill-lable,
+.difficulty-lable {
+  font-size: 50%;
+  margin: 0.2rem 0;
+  color: var(--text-color);
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .check-box-container {
+    display: none;
+    position: absolute;
+    top: 0;
+  }
+  .all-challenge-card-container {
+    max-width: 100%;
+    min-width: 100%;
+    /* padding: 0.5rem 0.9rem 0.5rem 0rem; */
+    padding: 0;
+  }
+  .challenge-container {
+    padding: 0 0.6rem;
+  }
+}

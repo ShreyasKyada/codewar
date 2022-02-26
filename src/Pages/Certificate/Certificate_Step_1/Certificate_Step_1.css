@@ -1,0 +1,299 @@
+.certificate-step1-container {
+  display: flex;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.certificate-step1-sub-container {
+  width: 73%;
+  height: 30%;
+  margin: 2.5rem 0;
+  box-shadow: 0 0 15px var(--box-shadow);
+  border: 2px solid var(--glass-border-color);
+  background-color: var(--transparent-color);
+  padding: 1rem 1.5rem;
+}
+
+/* MUI overrides */
+.certi-tabs {
+  width: fit-content !important;
+  font-size: 0.2rem !important;
+  color: var(--text-color) !important;
+}
+
+.css-1eddk3-MuiTabs-indicator {
+  background-color: transparent !important;
+}
+
+.tabpanel-certi {
+  padding: 0 !important;
+}
+
+.header-logo-container {
+  width: fit-content;
+}
+
+.step1-language-container {
+  display: flex;
+}
+
+.test-header-logo {
+  box-shadow: -5px 5px 8px 0 rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+  min-width: 80px;
+  height: 100px;
+  background-color: var(--hover-color);
+  position: relative;
+}
+
+.folded-corner {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  overflow: hidden;
+  padding-top: 35%;
+  width: 35%;
+  height: 0;
+  background-color: var(--background-color);
+  box-shadow: -3px 3px 3px rgb(0 0 0 / 25%);
+}
+
+.folded-corner::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--hover-color);
+  content: "";
+  transform: rotate(45deg) scale(1.5) translateY(50%);
+}
+
+.folded-corner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  transform: rotate(-135deg) scale(1.5) translateY(50%);
+}
+
+.certificate-container {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 10%;
+  font-size: 0.75rem;
+  color: black;
+  user-select: none;
+}
+
+.medal-icons {
+  font-size: 0.78rem;
+  position: absolute;
+  top: 9px;
+  left: 6px;
+  color: black;
+}
+
+.certi-content {
+  margin-left: 0.85rem;
+  min-height: 100%;
+  font-size: 0.9rem;
+}
+
+.certi-heading {
+  margin: 0.2rem;
+}
+
+.heading-bottom-container {
+  margin: 0.5rem 0.2rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+}
+
+.heading-bottom-container p,
+.clock-icons p {
+  margin: 0;
+}
+
+.certificate-sub-heading {
+  border: 2px solid var(--glass-border-color);
+  padding: 0.2rem;
+  font-size: 0.53rem;
+  letter-spacing: 1px;
+}
+
+.clock-icons p {
+  margin-left: 0.3rem;
+  font-size: 0.55rem;
+}
+
+.clock-icons {
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+  margin-right: 0.8rem;
+}
+
+/* Bottom container */
+.certificate-step1-bottom-container {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+}
+
+.certificate-step1-bottom-container p {
+  margin: 0;
+}
+
+.step-name-1 {
+  width: 8rem;
+}
+
+.steps-navbar {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  border-top: 1px solid var(--glass-border-color);
+  padding: 0.5rem 0;
+}
+
+.steps-navbar-1,
+.steps-navbar-2 {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem !important;
+}
+
+.step-numbers {
+  min-width: 38px;
+  max-width: 38px;
+  line-height: 38px;
+  font-size: 0.6rem;
+  background-color: var(--hover-color);
+  border-radius: 50%;
+  text-align: center;
+  color: black !important;
+  font-weight: 500;
+  margin-right: 0.6rem !important;
+}
+
+.step-name {
+  font-size: 0.65rem;
+  color: var(--text-color) !important;
+  letter-spacing: 1px;
+  text-transform: none;
+  text-align: left;
+}
+
+.certi-play-icon {
+  margin-right: 1rem;
+  font-size: 0.5rem;
+  align-self: center;
+}
+
+/* certificate text field */
+.certificate-textfield label,
+.certificate-textfield div,
+.certificate-textfield input {
+  font-size: 0.65rem !important;
+}
+
+.form-rows {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.from-info-heading {
+  letter-spacing: 2px;
+  margin-bottom: 1rem !important;
+}
+
+.firstname-container,
+.lastname-container {
+  width: 50%;
+}
+
+.firstname-container {
+  margin-right: 1rem;
+}
+
+.lastname-container {
+  margin-left: 1rem;
+}
+
+.warning-container {
+  font-size: 0.55rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.waring-icon {
+  margin-right: 0.3rem;
+  font-size: 0.69rem;
+  min-width: 1rem;
+}
+
+.email-container,
+.phone-container {
+  width: calc(50% - 1rem);
+}
+
+.proceed-btn {
+  font-size: 0.55rem !important;
+  margin-top: 1rem !important ;
+}
+
+@media (max-width: 600px) {
+  .certificate-step1-container {
+    padding: 0.65rem;
+  }
+  .certificate-step1-sub-container {
+    padding: 1rem 0.8rem;
+    width: 100%;
+    margin: 0.5rem;
+    box-sizing: border-box;
+    font-size: 0.65rem;
+  }
+  .certi-heading {
+    font-size: 0.65rem;
+  }
+  .clock-icons p,
+  .certificate-sub-heading {
+    font-size: 0.5rem;
+  }
+  .steps-navbar {
+    flex-wrap: wrap;
+  }
+  .steps-navbar-1 {
+    margin: 0.9rem 0 !important;
+  }
+  .form-rows {
+    flex-direction: column;
+  }
+  .firstname-container,
+  .lastname-container,
+  .email-container,
+  .phone-container {
+    width: 100% !important;
+  }
+  .firstname-container,
+  .lastname-container {
+    margin: 0.3rem 0;
+  }
+  .step1-language-container {
+    flex-direction: column;
+  }
+  .certi-content {
+    margin: 0.5rem 0;
+  }
+  .MuiTabs-scroller {
+    overflow: scroll !important;
+  }
+}

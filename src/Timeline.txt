@@ -1,0 +1,59 @@
+ 
+---------------------- 8-02-2002 ----------------------
+
+imp: "npm install react-icons --save" icon mate kryu 6e 😝😝😝
+
+and mobile and desktop ni navbar alg kri 6e bcz bnne same 
+ma possible 6e but easy rakhvu 6e so and main to ae ke ena 
+thi kai performance ma jajo frk ny pde 😅😅
+
+- mobile ane desktop na navbar nu logic 1 j file ma lkhyu 6e.
+
+
+---------------------- 9-02-2002 ----------------------
+- mobile navbar create.
+- react-icon mathi "search icon" user kryu 6e
+
+----------------------------------------------- Pending work -----------------------------------------------
+
+- Drop down ma mirrore effect add krvani 6e.
+- person na icon no color change krvano 6e.
+- dropdown ma 1st tab ma je button 6e ae list item ma hover effect remove krvani 6e.
+
+- codewar no logo ni width fix krvani 6e
+- mobile view ma dark theme and playground nu icon add krvanu 6e. (search bar add nthi krvani)
+- navbar na bdha icon and tab ma hover effect mukvani j 6e. (Web site no primary color)
+- dark and light theme ne actually ma work kre ae logic lkhvanu 6e.
+- dropdown vala ma cursor: pointer krvanu 6e and navbar ma logo and tabs ma pn cursor:pointer
+  krvanu 6e.
+- dropdown ni bar click thay to dropdown automatically vy javu joiye and same login ma pn.
+  ane aenu coding already mobile ni navbar ma lkhelu 6e so just try to copy that.
+- certificate na card ma je button 6e ema pn cursor: pointer krvanu 6e ane same language na card ma pn.
+
+
+
+---------------------------------------------- Admin pages ------------------------------------------------
+
+1. languages
+    - Add language (DONE)
+    - Display language (DONE)
+    - Update language 
+    - Delete language
+
+2. questions
+    2.1 Question list 
+    2.2 Add question (Progress bar and validation baki 6e)
+
+3. Contest
+    3.1 Contest list (responsive and data show thay ae baki 6e)
+    3.2 Add Contest (responsive and validation baki 6e)
+    3.3 Contest Question List 
+    3.4 Contest Add Question
+  - 3.3 adn 3.4 ae bnne 2.1 and 2.2 na page no use krse
+
+4. certification
+    4.1 certification List
+    4.2 time 
+    
+
+    https://meet.google.com/qkz-wggn-skr

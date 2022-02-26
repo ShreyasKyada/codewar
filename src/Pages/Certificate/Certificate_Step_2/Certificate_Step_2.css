@@ -1,0 +1,39 @@
+.certificate-step2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.certificate-step2-sub-container {
+  width: 73%;
+  background-color: var(--transparent-color);
+  box-shadow: 0px 0px 20px var(--box-shadow);
+  padding: 1.5rem;
+  color: var(--text-color);
+}
+
+.container-body {
+  width: 60%;
+  height: 350px;
+  padding: 50px;
+  border: 2px solid var(--border-color);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lp-icon {
+  height: 100px;
+  width: 100px;
+  /* color: hsl(141, 72%, 38%); */
+  color: var(--hover-color);
+}
+
+
+@media (max-width: 600px) {
+  .container-body {
+    width: 100%;
+  }
+}

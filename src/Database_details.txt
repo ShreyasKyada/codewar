@@ -1,0 +1,186 @@
+- database ma data store krta hoy ae object ma jo 2 word hoy to _ use krvo.
+  ex: language_code
+- Bdha ma validation add krvu.
+
+------------- 1. languages -------------
+
+- language no object
+  - Structure: 
+    languages: {
+      language_next_code: 100
+      language_code: {
+        language_name: "",
+        icon_URL: "",
+      }
+    }
+
+    - example: 
+      languages: { // aa as a table assume kri skiye and aa only as a path lkhishu...niche lkhyu 6e.
+        next_language_code: 100 // default
+        100 {
+          language_name: "C",
+          icon_URL: "Firebase na storage ni",
+        }
+        200 {
+          language_name: "C++",
+          icon_URL: "Firebase na storage ni",
+        }
+        ...uper ni jem j same object create thse
+      }
+
+
+------------- 2. Questions -------------
+
+- Structure: 
+  language_code: {
+    next_question_code: 101
+    question_id: {
+      question_heading: "",
+      max_score: integer
+      difficulty_level: "",
+      skill: "",
+      default_code: "",
+      question_detail: "",
+      test_case_0: {
+        input: "",
+        output: ""
+      }
+    }
+  }
+
+- example 
+  100: {
+    next_question_code: 103
+    101: {
+      question_heading: "hello world! in c++",
+      max_score: 5
+      difficulty_level: Easy,
+      default_code: " #include <iostream>
+                      #include <cstdio>
+                      using namespace std;
+
+                      int main() {
+                          printf("Hello, World!");
+                          return 0;
+                      }",
+      question_detail: HTML formate ma je text editor thi get thse,
+      skill: c++(basic),
+      test_case_0: {
+        input: "",
+        output: "Hello, World!"
+      }
+    }
+    102: {
+      question_heading: "hello world! in c++1",
+      max_score: 10
+      difficulty_level: Easy,
+      default_code: " #include <iostream>
+                      #include <cstdio>
+                      using namespace std;
+
+                      int main() {
+                          printf("Hello, World!");
+                          return 0;
+                      }",
+      question_detail: HTML formate ma je text editor thi get thse,
+      skill: c++(basic),
+      test_case_0: {
+        input: "",
+        output: "Hello, World!"
+      } 
+    }
+  }
+
+------------- 3. Contest -------------
+
+-Structure 
+  contest_list: {
+    next_contest_id: 1000
+    contest_id: {
+      contest_name: "",
+      time:""
+    }
+  }
+
+  contest_list: {
+    -xyszasdkjashsadj: {
+      contest_name: "",
+      time:""
+    }
+  }
+
+- example 
+  contest_list: {
+    next_contest_id: 1002
+    1000: {
+      contest_name: "ProjectEuler+",
+      time: "fabuary 20th 2022"
+    }
+    1001: {
+      contest_name: "ProjectEuler++",
+      time: "fabuary 25th 2022"
+    }
+  }
+
+-Structure
+  contest_id: {
+    next_contest_question_id: 10001
+    contest_question_id: {
+      same j object questions ma banavyo ae 😃😃😃
+    }
+  }
+  1000: {   ---- same 1001, 1002 etc.. ----
+    next_contest_question_id: 10002   --- aama 1st 4 digit contest_id and baki contest_question_id
+    10001: {  ---- same 10011, 10012 etc.. ----
+      question_heading: "hello world! in c++",
+      max_score: 5
+      difficulty_level: Easy,
+      default_code: " #include <iostream>
+                      #include <cstdio>
+                      using namespace std;
+
+                      int main() {
+                          printf("Hello, World!");
+                          return 0;
+                      }",
+      question_detail: HTML formate ma je text editor thi get thse,
+      skill: c++(basic),
+      test_case_0: {
+        input: "",
+        output: "Hello, World!"
+      }
+    }
+  }
+
+
+------------- 4. Users -------------
+
+- Structure
+  - inshort bdhi j details ke je user ne realted 6e ae ahiya mukishu :-)
+  users: {
+    uid:{ -- auth object mathi aave ae --
+      username: auth obj mathi j avse,
+      email: auth obj mathi j avse,
+      photo_URL: "",
+      score: 5000,
+      solved_questions: {
+        contest_ids  --- aama solve krela questioni id store krti javani ---
+      }
+      solved_contest: {
+        contest_ids  --- aama solve krela questioni id store krti javani ---
+      }
+      contest_subscription: {
+        kai kai contest ma enter thava subscribe kryu 6e ae detail
+      }
+      playground: {
+        playground ma code save krse ae code apde 1 table ma store kryo hse ane aeni 1 id hse ae ahiya lkhishu 
+      }
+      bookmarks: {
+        book marks krela question ni id
+      }
+    } 
+  }
+
+------------- 5. vs mode -------------
+
+- ae pchi krishu 😂😂
