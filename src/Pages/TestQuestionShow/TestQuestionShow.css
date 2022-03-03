@@ -1,0 +1,132 @@
+/* Mui style */
+.test-question-show-tabs .MuiTabs-indicator {
+  left: 0;
+}
+
+.test-question-show-tabs .Mui-selected {
+  background-color: var(--background-color);
+}
+
+.test-question-show-tabs {
+  background-color: var(--tab-box-color) !important;
+  width: 3rem;
+}
+
+.test-question-show-tab {
+  font-size: 0.6rem !important;
+  padding: 0.5rem 0 !important;
+}
+
+.test-question-show-tabpanel {
+  background-color: var(--background-color);
+  width: 100%;
+  min-height: calc(100vh - 3.38rem);
+  color: var(--text-color);
+}
+
+.warning-tab {
+  border-bottom: 2px solid var(--glass-border-color) !important;
+}
+
+.time-left-tab {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.navbar-hide-time {
+    margin: 0 !important;
+    text-transform: none !important;
+}
+
+.question-panel {
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Root element */
+.test-question-show-container {
+  background-color: var(--tab-box-color) !important;
+}
+
+/* navbar header logo styles */
+.test-question-show-navbar,
+.left-navbar-container {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  user-select: none;
+}
+
+.test-hide-left-side-navbar {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  color: var(--text-color);
+  height: 2rem;
+  font-size: 0.5rem;
+}
+
+.test-header-logo-codewar {
+  height: 2rem;
+  width: 5rem;
+  background-color: transparent;
+}
+
+.test-header-logo-codewar img {
+  height: 100%;
+  width: 100%;
+}
+
+.left-navbar-container p {
+  font-size: 0.5rem;
+}
+
+/* right navbar */
+.right-navbar-container {
+  font-size: 0.53rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.navbar-theme-icon,
+.navbar-time,
+.right-navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-theme-icon-moon, .navbar-theme-icon {
+  font-size: 0.63rem !important;
+  width: 0.7rem !important;
+  cursor: pointer !important;
+}
+
+.navbar-time-icon {
+  font-size: 0.72rem !important;
+  margin-right: 0.2rem;
+}
+
+.answered-tag,
+.navbar-time {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.answered-tag span {
+  letter-spacing: 1px;
+}
+
+.navbar-username-container {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+  margin-right: 1.2rem;
+}
+
+.navbar-person-icon {
+  margin-right: 0.2rem;
+}
+
+.test-warning-icon {
+  font-size: 0.7rem;
+}

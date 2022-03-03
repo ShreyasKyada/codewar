@@ -17,9 +17,7 @@ const AuthContext = ({ children }) => {
   });
 
   return (
-    <authContext.Provider
-      value={{ validUser, setValidUser }}
-    >
+    <authContext.Provider value={{ validUser, setValidUser }}>
       {children}
     </authContext.Provider>
   );

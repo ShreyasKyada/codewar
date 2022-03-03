@@ -1,0 +1,120 @@
+.conteststep1-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
+}
+
+.conteststep1-container-left {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  height: 100vh;
+  width: 43%;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  box-shadow: 0 3px 15px var(--box-shadow);
+}
+
+.conteststep1-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 300px;
+  width: 100%;
+}
+
+.dashboard-link {
+  display: flex;
+  margin-left: -1.5rem;
+  align-items: center;
+}
+
+.logo {
+  width: 300px;
+}
+
+.conteststep1-name {
+  margin: 0 0 20px;
+  color: var(--text-color-1);
+  word-break: break-word;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.contest-detail-header {
+  font-size: 15px;
+  margin: 0.5rem 0;
+}
+
+.contest-detail-content {
+  padding: 5px 5px 5px 0;
+  font-size: 18px;
+}
+
+.conteststep1-container-right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 57%;
+  height: 100vh;
+}
+
+.scrolling-form-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 23rem; */
+  width: 100%;
+  padding: 0 3rem;
+  box-sizing: border-box;
+}
+
+.page-1 {
+    min-height: 22rem;
+}
+
+.page-2 {
+    min-height: 30rem;
+}
+
+.paragraph {
+  font-size: 20px;
+  line-height: 0.84rem;
+}
+
+.rank {
+  font-size: 20px;
+}
+
+.form-3 {
+  padding-top: 2rem;
+}
+
+.scrolling-form-page-section {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolling-page {
+  min-width: 500px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.register-textfield lable,
+.register-textfield div,
+.register-textfield input {
+  margin-top: 0.5rem;
+  width: 6.5rem;
+  padding: 0.5rem;
+}

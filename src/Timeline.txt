@@ -2,7 +2,6 @@ git command
 git clone (URL)
 
 
-
 ---------------------- 8-02-2002 ----------------------
 
 imp: "npm install react-icons --save" icon mate kryu 6e 😝😝😝
@@ -64,4 +63,9 @@ thi kai performance ma jajo frk ny pde 😅😅
 
 
 
+Certificate na 1st step ma state, city ,clg name add krvanu 6e.
+Admin side contest add ma contest no type enter krvano 6e filter mate.,
+
+
+Preparing your environment
 

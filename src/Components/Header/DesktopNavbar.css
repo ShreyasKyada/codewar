@@ -11,7 +11,22 @@
   user-select: none;
   border-bottom: 1px solid var(--glass-border-color);
   position: relative;
-  height: 70px;
+  height: 67px;
+}
+
+.active-tab {
+  color: var(--hover-color) !important;
+  position: relative;
+}
+
+.active-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -100%;
+  height: 3px;
+  background-color: var(--hover-color);
+  width: 105%;
+  left: -2.5%;
 }
 
 .progressbar-container {
@@ -43,7 +58,7 @@
 .appbar-links {
   text-decoration: none;
   margin: 0.2rem 0.5rem;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--text-color);
   transition: all 0.3s linear;
 }
@@ -94,7 +109,7 @@
 
 .search-box-icon-container {
   display: flex;
-  padding: 0.21rem 0.25rem;
+  padding: 0.18rem 0.25rem;
   transition: all 0.2s linear;
 }
 
@@ -102,13 +117,13 @@
   top: 3px;
   left: 3px;
   height: 100%;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-color);
 }
 
 .search-box {
   width: 4.5rem;
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   letter-spacing: 1.5px;
   padding: 0 0.3rem;
   border: none;
@@ -140,17 +155,17 @@
 
 .icon-container {
   color: var(--text-color);
-  width: 1.6rem;
+  width: 1.5rem;
 }
 
 .theme-icon,
 .playground-icon {
-  font-size: 0.9rem !important;
+  font-size: 0.82rem !important;
   cursor: pointer;
 }
 
 .theme-icon-moon {
-  font-size: 0.8rem;
+  font-size: 0.68rem;
   cursor: pointer;
 }
 

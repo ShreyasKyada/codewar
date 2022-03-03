@@ -1,17 +1,24 @@
-import { signOut } from "firebase/auth";
 import { useContext, useState } from "react";
+import { signOut } from "firebase/auth";
 import { authContext } from "../../Context/AuthContext";
 import { loginContext } from "../../Context/LoginContext";
 import { auth } from "../../Firebase/Firebase";
 import { themeContext } from "../../Context/ThemeContext";
 
 const HeaderLogic = () => {
-  const HomePageURL = ["Purpose", "Dashboard", "Certificate"];
+  const HomePageURL = [
+    { name: "Purpose", URL: "home" },
+    { name: "Dashboard", URL: "dashboard" },
+    { name: "Certify", URL: "certificate" },
+    { name: "Contest", URL: "contest" },
+    { name: "Vs Mode", URL: "vsmode" },
+  ];
+
   const dropdownURL = ["Profile", "My playgroud", "Logout"];
   const [open, setOpen] = useState(false);
   const [drawer, setDrawer] = useState(false);
 
-  const { setShowLogin } = useContext(loginContext);
+  const { setShowLogin, activeTab } = useContext(loginContext);
   const { setValidUser } = useContext(authContext);
   const { isDarkMode, setIsDarkMode } = useContext(themeContext);
 
@@ -55,6 +62,7 @@ const HeaderLogic = () => {
     toggleDrawer,
     drawer,
     toggleDarkMode,
+    activeTab,
   };
 };
 

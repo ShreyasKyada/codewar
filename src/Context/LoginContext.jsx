@@ -9,6 +9,7 @@ const LoginContext = ({ children }) => {
   const [showHeaderSnackbar, setShowHeaderSnackbar] = useState(false);
   const [severity, setSeverity] = useState("");
   const [isShowNavbar, setIsShowNavbar] = useState(true);
+  const [activeTab, setActiveTab] = useState("");
 
   const setSnackbarData = (errorText, typeOfSnackbar) => {
     setShowHeaderSnackbar(true);
@@ -29,7 +30,10 @@ const LoginContext = ({ children }) => {
           severity,
           setSnackbarData,
           setShowHeaderSnackbar,
-          isShowNavbar, setIsShowNavbar
+          isShowNavbar,
+          setIsShowNavbar,
+          activeTab,
+          setActiveTab,
         }}
       >
         {children}

@@ -54,11 +54,11 @@ const MobileNavbar = () => {
               return (
                 <ListItemButton
                   component={Link}
-                  to="/challenges"
+                  to={`/${element.URL}`}
                   className="mobile-list-button"
                   key={index}
                 >
-                  <p className="mobile-list-text">{element}</p>
+                  <p className="mobile-list-text">{element.name}</p>
                 </ListItemButton>
               );
             })}

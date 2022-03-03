@@ -86,7 +86,7 @@ const QuestionShow = () => {
         </div>
         <div className="question-show-right-side-container">
           <p>
-            Author <span>I m pote</span>
+            Author <span>Krupali</span>
           </p>
           <p>
             Difficulty <span>{questionData.difficulty_level}</span>

@@ -7,7 +7,6 @@ import { Button, TextField } from "@mui/material";
 import { TabPanel, TabList, TabContext } from "@mui/lab";
 import { Tab } from "@mui/material";
 import Certificate_Step_2 from "../Certificate_Step_2/Certificate_Step_2";
-// import Certificate_Step_2 from "../Certificate_Step_2/Certificate_Step_2";
 
 const Certificate_Step_1 = () => {
   const [navigationTabValue, setNavigationTabValue] = useState("3");

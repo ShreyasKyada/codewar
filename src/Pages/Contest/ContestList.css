@@ -1,0 +1,49 @@
+.contest-list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contest-list-card-container {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  padding-left: 4.5rem;
+  box-sizing: border-box;
+}
+
+.contest-heading {
+  color: var(--text-color);
+  font-size: 0.8rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.4rem;
+  box-sizing: border-box;
+}
+
+.filter-container {
+  width: 20%;
+  margin-top: 2.9rem;;
+}
+
+.filters {
+  border-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .filter-container {
+    display: none;
+  }
+  .contest-list-card-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 0;
+    padding: 0 0.5rem;
+  }
+}

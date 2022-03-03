@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import LogIn from "../LogIn_SignUp/LogIn";
 import { loginContext } from "../../Context/LoginContext";
 import { authContext } from "../../Context/AuthContext";
@@ -17,6 +17,7 @@ const Header = () => {
     headerErrorText,
     severity,
     isShowNavbar,
+    setActiveTab,
   } = useContext(loginContext);
   const { validUser } = useContext(authContext);
   const { isDarkMode } = useContext(themeContext);
@@ -26,6 +27,10 @@ const Header = () => {
   const hideSnackbar = () => {
     setShowHeaderSnackbar(false);
   };
+
+  useEffect(() => {
+    setActiveTab("Dashboard");
+  }, []);
 
   return (
     <>

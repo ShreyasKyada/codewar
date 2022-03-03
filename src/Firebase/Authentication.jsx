@@ -40,7 +40,7 @@ export const createAnAccount = async (signupData) => {
   return catchErr;
 };
 
-export const login = async ( loginData) => {
+export const login = async (loginData) => {
   let loginError = "none";
 
   try {

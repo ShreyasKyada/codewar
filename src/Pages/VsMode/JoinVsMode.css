@@ -1,0 +1,72 @@
+.join-vs-mode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tranparent-color);
+  min-width: 80%;
+  margin: 0 auto;
+}
+
+.vs-mode-container-img {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 1.5rem;
+}
+
+.join {
+  height: 90vh;
+  width: 500px;
+}
+
+.vs-mode-container-txt {
+  width: 55%;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+.vs-mode-inputbox-container {
+  margin: 0;
+  width: fit-content;
+}
+
+.vs-mode-inputbox {
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  background: transparent;
+  outline: none;
+  width: 90px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--text-color);
+  transition: all 0.2s linear;
+}
+
+.vs-mode-inputbox:focus {
+    color: var(--hover-color);
+    border-bottom: 2px solid var(--hover-color);
+}
+
+.vs-mode-inputbox:first-child {
+    margin-right: .8rem;
+}
+
+.vs-mode-inputbox:not(:first-child) {
+    margin: 2rem 0.6rem;
+}
+
+.vs-mode-sub-heading {
+  font-size: 0.65rem;
+}
+
+.vsmode-join-btn {
+    width: 5rem !important;
+    font-size: .6rem !important;
+    text-transform: none !important;
+    font-family: "rubik" !important;
+    letter-spacing: 1px !important;
+    float: right;
+}

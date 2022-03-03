@@ -26,6 +26,7 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
     open,
     dropdownURL,
     toggleDarkMode,
+    activeTab,
   } = HeaderLogic();
 
   const userprofileAndDropDown = () => {
@@ -75,14 +76,26 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
       </div>
       <div className="header-logo">
         <Link to="/">
-          <img src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=f4888329-9045-4048-aff5-c6437090971d" alt="Logo" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=f4888329-9045-4048-aff5-c6437090971d"
+            alt="Logo"
+          />
         </Link>
       </div>
       <div className="appbar-tab">
+        {/* <Link key={index} to={`/${element.URL}`} className="appbar-links"> */}
         {HomePageURL.map((element, index) => {
           return (
-            <Link key={index} to={`/${element}`} className="appbar-links">
-              {element}
+            <Link
+              key={index}
+              to={`/${element.URL}`}
+              className={
+                activeTab === element.name
+                  ? "appbar-links active-tab"
+                  : "appbar-links"
+              }
+            >
+              {element.name}
             </Link>
           );
         })}
@@ -91,7 +104,6 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
       <div className="searchbox-theme-playground-container">
         <div className="icon-container">
           {/* Dark mode icon toggle */}
-          {/* {isDarkMode ? "sk" : "ks"} */}
           {isDarkMode ? (
             <BsMoon className="theme-icon-moon" onClick={toggleDarkMode} />
           ) : (

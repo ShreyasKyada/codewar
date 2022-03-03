@@ -9,8 +9,6 @@ body {
   padding: 0;
   color: var(--light-text);
   position: relative;
-  /* --transparent-color: #e6e6e685; */
-  /* --transparent-color: #ffffffb3; */
   background-color: var(--mode);
 }
 
@@ -23,9 +21,12 @@ body.light {
   --glass-border-color: rgba(0, 0, 0, 0.185);
   --box-shadow: rgb(199, 199, 199);
   --border-color: black;
-  --drawer-paper: rgba(255, 255, 255, 0.342);
+  --drawer-paper: rgba(179, 179, 179, 0.342);
   --background-color: #f8f8f8;
-  --diactive-text-color: rgb(138, 142, 143);
+  --tab-box-color: rgb(197, 197, 197);
+  --scrollbar-background-color: #141414;
+  --scrollbar-thumb-color: rgb(163, 163, 163);
+  --text-color-1: #0e141e;
 }
 
 body.dark {
@@ -34,13 +35,15 @@ body.dark {
   --primary: #f44336;
   --hover-color: #03cffc;
   --transparent-color: rgba(30, 30, 30, 0.6);
-  /* --glass-border-color: rgba(0, 0, 0, 0.226); */
+  --glass-border-color: rgba(255, 255, 255, 0.125);
   --box-shadow: rgba(85, 85, 85, 0.836);
   --border-color: white;
-  --glass-border-color: rgba(255, 255, 255, 0.125); 
   --drawer-paper: rgba(0, 0, 0, 0.342);
   --background-color: #1e1e1e;
-  --diactive-text-color: rgba(183, 201, 204, 0.3);
+  --tab-box-color: #161616;
+  --scrollbar-background-color: rgb(48, 47, 47);
+  --scrollbar-thumb-color: rgb(99, 99, 99);
+  --text-color-1: #dcdcdd;
 }
 
 .router-links {

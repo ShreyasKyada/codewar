@@ -1,3 +1,9 @@
+.dashboard-container {
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .dashboard-heading {
   text-align: center;
   margin: 0;
@@ -6,7 +12,7 @@
 }
 
 .certificate-heading {
-  margin: 1rem 3.5rem 1.5rem 4.5rem;
+  margin: 1rem 3.5rem 1.5rem 0rem;
   font-size: 0.9rem;
   letter-spacing: 1px;
   color: var(--text-color);
@@ -15,7 +21,7 @@
 .certification-card-container {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  margin: 0 4rem;
+  /* margin: 0 4rem; */
   gap: 1.5rem;
   box-sizing: border-box;
 }
@@ -40,8 +46,8 @@
   margin: 1rem 0;
   min-width: calc(100% / 3);
   box-sizing: border-box;
-  margin: 0 0.5rem;
-  padding: 0 3.5rem 1.5rem 3.5rem;
+  /* margin: 0 0.5rem;
+  padding: 0 3.5rem 1.5rem 3.5rem; */
   color: var(--text-color);
 }
 
@@ -60,6 +66,7 @@
   .certificate-heading {
     margin: 0 1.2rem;
     margin-top: 1rem;
+    margin-left: 0;
   }
   .language-container {
     padding: 0;
@@ -71,16 +78,21 @@
 }
 
 @media (max-width: 460px) {
+  .dashboard-container {
+    width: 100%;
+    margin: 0;
+    padding: 0 0.8rem;
+  }
   .certification-card-container {
-    margin: 1rem;
+    margin: 0;
     margin-top: 0.5rem;
   }
   .certificate-heading {
     font-size: 0.8rem;
-    margin: 1rem 0 0 1.2rem;
+    /* margin: 1rem 0 0 1.2rem; */
   }
   .language-container {
-    margin: 0.5rem;
+    margin: 0.6rem 0;  
   }
   .language-card-container {
     width: 100%;

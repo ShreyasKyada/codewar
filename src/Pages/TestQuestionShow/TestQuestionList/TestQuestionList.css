@@ -1,0 +1,39 @@
+.test-questions-list-container {
+    margin: 0.7rem 0;
+}
+
+.test-question-container {
+  font-size: 0.55rem;
+  display: flex;
+  background-color: var(--drawer-paper);
+  padding: 0.6rem 0.6rem;
+  margin-bottom: .8rem;
+  width: 93%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.test-question-container .test-question-no {
+  margin: 0.3rem;
+  margin-right: 0.4rem;
+}
+
+.test-question-heading {
+  display: flex;
+  align-items: center;
+  line-height: 0.75rem;
+}
+
+.test-btn-container {
+  flex: 1;
+  margin-right: 0.48rem;
+}
+
+.test-btn-list-show {
+  font-size: 0.55rem !important;
+  min-width: 5.9rem !important;
+  text-transform: none !important;
+  letter-spacing: 2px !important;
+  float: right !important;
+}
+
