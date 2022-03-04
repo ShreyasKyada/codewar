@@ -17,12 +17,13 @@
 .active-tab {
   color: var(--hover-color) !important;
   position: relative;
+  transition: all .2s linear;
 }
 
 .active-tab::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -100%;
+  bottom: -105%;
   height: 3px;
   background-color: var(--hover-color);
   width: 105%;
@@ -175,11 +176,14 @@
   padding: 0 !important;
   margin: 0 1rem 0 0 !important;
   transition: 0.1s all linear !important;
+  text-transform: none !important;
+  color: var(--text-color) !important;
 }
 
 .person-icon {
   font-size: 1rem !important;
   color: var(--text-color);
+  transition: 0.1s all linear !important;
 }
 
 .list-item-btn:hover,
@@ -208,16 +212,14 @@
   font-size: 0.5rem !important;
 }
 
-.collapse {
-  position: absolute;
-  top: 1.9rem;
-  right: 1.4rem;
-  line-height: 0rem;
-}
-
 .list {
   width: 100% !important;
   background-color: var(--transparent-color) !important;
+  z-index: 0 !important;
+}
+
+.list .css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: transparent !important;
 }
 
 .list-button:not(:last-child)::after {
@@ -230,16 +232,16 @@
   background-color: rgba(105, 105, 105, 0.356);
 }
 
-.list-button:last-child {
+/* .list-button:last-child {
   margin-bottom: 0.1rem !important;
-}
+} */
 
 .list-button:first-child:hover {
   background-color: transparent !important;
 }
 
 .list-button {
-  line-height: 0rem;
+  line-height: 0rem !important;
   padding: 6px 22px !important;
   position: relative;
 }

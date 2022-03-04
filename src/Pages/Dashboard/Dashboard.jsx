@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CertificationCard from "../../Components/CertificationCard/CertificationCard";
 import LanguageCard from "../../Components/LanguageCard/LanguageCard";
 import SubHeader from "../../Components/SubHeader/SubHeader";
+import { loginContext } from "../../Context/LoginContext";
 import "./Dashboard.css";
 import DashboardLogic from "./DashboardLogic";
 
 const Dashboard = () => {
   const { allLanguages } = DashboardLogic();
+  const { setActiveTab } = useContext(loginContext);
+
+  useEffect(() => {
+    setActiveTab("Dashboard");
+  }, []);
 
   return (
     <>
@@ -16,7 +22,7 @@ const Dashboard = () => {
           Dashboard: {
             name: "Dashboard",
             link: "/dashboard",
-          }
+          },
         }}
       />
       <div className="dashboard-container">

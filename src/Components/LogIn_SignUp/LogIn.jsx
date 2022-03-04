@@ -6,13 +6,11 @@ import { Alert, Button, Snackbar, Tab, TextField } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import googleIcon from "../../Assets/google-vector.svg";
 import facebookIcon from "../../Assets/facebook-vector.svg";
-import CloseIcon from "@mui/icons-material/Close";
 
 const LogIn = () => {
   const {
     tabValue,
     handleChange,
-    hideLogin,
     height,
     signUpDataFun,
     signUpBtnFun,
@@ -36,9 +34,6 @@ const LogIn = () => {
         </Alert>
       </Snackbar>
 
-      <i onClick={hideLogin}>
-        <CloseIcon className="close-icon" />
-      </i>
       <div className="login-signup-container">
         <TabContext value={tabValue}>
           <TabList onChange={handleChange}>

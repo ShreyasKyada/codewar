@@ -63,6 +63,15 @@
   top: 69px !important;
 }
 
+.list-signin-btn {
+  height: fit-content  !important;
+}
+
+.list-singin-main-btn {
+  width: 100% !important;
+  margin: 0.6rem 0 !important;
+}
+
 /* .MuiDrawer-modal {
     glass Effect
 } */

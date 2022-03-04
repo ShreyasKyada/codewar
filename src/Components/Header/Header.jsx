@@ -2,15 +2,23 @@ import React, { useContext, useEffect } from "react";
 import LogIn from "../LogIn_SignUp/LogIn";
 import { loginContext } from "../../Context/LoginContext";
 import { authContext } from "../../Context/AuthContext";
-import { Alert, Snackbar, useMediaQuery } from "@mui/material";
+import {
+  Alert,
+  Dialog,
+  Snackbar,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 import { themeContext } from "../../Context/ThemeContext";
 import "./Header.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Header = () => {
   const {
     showLogin,
+    setShowLogin,
     isLoadingState,
     showHeaderSnackbar,
     setShowHeaderSnackbar,
@@ -21,6 +29,8 @@ const Header = () => {
   } = useContext(loginContext);
   const { validUser } = useContext(authContext);
   const { isDarkMode } = useContext(themeContext);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const mobileView = useMediaQuery("(min-width:600px)");
 
@@ -62,9 +72,24 @@ const Header = () => {
 
       {isShowNavbar && (
         <>
-          {showLogin ? <LogIn /> : ""}
+          <Dialog
+            open={showLogin}
+            fullScreen={fullScreen}
+            onClose={() => setShowLogin(false)}
+          >
+            <i
+              onClick={() => {
+                setShowLogin(false);
+              }}
+              className="close-icon-container"
+            >
+              <CloseIcon className="close-icon" />
+            </i>
+            <LogIn />
+          </Dialog>
+
           {!mobileView ? (
-            <MobileNavbar />
+            <MobileNavbar validUser={validUser} />
           ) : (
             <DesktopNavbar
               validUser={validUser}

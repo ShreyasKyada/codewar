@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./JoinVsMode.css";
 import { Button } from "@mui/material";
 import joinVectore from "../../Assets/join-vector.svg";
+import { loginContext } from "../../Context/LoginContext";
 
 const JoinVsMode = () => {
+  const { setActiveTab } = useContext(loginContext);
+
+  useEffect(() => {
+    setActiveTab("Vs Mode");
+  }, []);
+
   return (
     <div className="join-vs-mode-container">
       <div className="vs-mode-container-img">

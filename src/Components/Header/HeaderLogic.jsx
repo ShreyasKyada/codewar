@@ -14,29 +14,37 @@ const HeaderLogic = () => {
     { name: "Vs Mode", URL: "vsmode" },
   ];
 
-  const dropdownURL = ["Profile", "My playgroud", "Logout"];
-  const [open, setOpen] = useState(false);
   const [drawer, setDrawer] = useState(false);
 
   const { setShowLogin, activeTab } = useContext(loginContext);
   const { setValidUser } = useContext(authContext);
   const { isDarkMode, setIsDarkMode } = useContext(themeContext);
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  // const open = Boolean(anchorEl);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(!open);
+  };
+
   const gotoLogin = () => {
     setShowLogin(true);
   };
 
   const logOut = () => {
-    console.log("logOut");
+    // console.log("logOut");
     signOut(auth);
     setValidUser(false);
   };
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = (openDrawer) => (event) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -44,7 +52,7 @@ const HeaderLogic = () => {
     ) {
       return;
     }
-    setDrawer(open);
+    setDrawer(openDrawer);
   };
 
   const toggleDarkMode = () => {
@@ -57,12 +65,13 @@ const HeaderLogic = () => {
     gotoLogin,
     logOut,
     handleClick,
+    handleClose,
     open,
-    dropdownURL,
     toggleDrawer,
     drawer,
     toggleDarkMode,
     activeTab,
+    anchorEl,
   };
 };
 

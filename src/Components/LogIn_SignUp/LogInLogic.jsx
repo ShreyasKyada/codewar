@@ -33,9 +33,7 @@ const LoginLogic = () => {
     }
   }, [showLogin]);
 
-  const hideLogin = () => {
-    setShowLogin(false);
-  };
+  
 
   const signUpBtnFun = async () => {
     const { username, email, password } = signUpData;
@@ -92,7 +90,7 @@ const LoginLogic = () => {
   const loginFun = () => {
     let error = login(loginData);
 
-    error.then(res => {
+    error.then((res) => {
       if (res === "none") {
         setShowLogin(false);
       } else {
@@ -110,7 +108,6 @@ const LoginLogic = () => {
   return {
     tabValue,
     handleChange,
-    hideLogin,
     height,
     signUpDataFun,
     signUpBtnFun,

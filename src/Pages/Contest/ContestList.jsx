@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ContestCard from "../../Components/ContestCard/ContestCard";
 import "./ContestList.css";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import ContestListLogic from "./ContestListLogic";
+import { loginContext } from "../../Context/LoginContext";
 
 const ContestList = () => {
   const { contestList } = ContestListLogic();
+  const { setActiveTab } = useContext(loginContext);
+
+  useEffect(() => {
+    setActiveTab("Contest");
+  }, []);
 
   return (
     <div className="contest-list-container">

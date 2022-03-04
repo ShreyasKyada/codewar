@@ -14,8 +14,9 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Link } from "react-router-dom";
 
-const MobileNavbar = () => {
-  const { toggleDrawer, drawer, HomePageURL, dropdownURL } = HeaderLogic();
+const MobileNavbar = ({ validUser }) => {
+  const { toggleDrawer, drawer, HomePageURL, logOut, gotoLogin } =
+    HeaderLogic();
 
   return (
     <AppBar className="appbar" position="relative">
@@ -31,7 +32,10 @@ const MobileNavbar = () => {
       <div className="logo-container">
         <div className="header-logo-mobile">
           <Link to="/">
-            <img src="images/logo4.png" alt="Logo" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=f4888329-9045-4048-aff5-c6437090971d"
+              alt="Logo"
+            />
           </Link>
         </div>
       </div>
@@ -65,13 +69,28 @@ const MobileNavbar = () => {
           </List>
           <Divider />
           <List className="mobile-list-container">
-            {dropdownURL.map((element, index) => {
-              return (
-                <ListItemButton className="mobile-list-button" key={index}>
-                  <p className="mobile-list-text">{element}</p>
-                </ListItemButton>
-              );
-            })}
+            <ListItemButton className="mobile-list-button">
+              <p className="mobile-list-text">Profile</p>
+            </ListItemButton>
+            <ListItemButton className="mobile-list-button">
+              <p className="mobile-list-text">My playgroud</p>
+            </ListItemButton>
+            {!validUser ? (
+              <ListItemButton className="mobile-list-button list-signin-btn" disableRipple>
+                <Button
+                  variant="outlined"
+                  className="btn list-singin-main-btn"
+                  color="primary"
+                  onClick={gotoLogin}
+                >
+                  Sign in
+                </Button>
+              </ListItemButton>
+            ) : (
+              <ListItemButton className="mobile-list-button" onClick={logOut}>
+                <p className="mobile-list-text">Logout</p>
+              </ListItemButton>
+            )}
           </List>
         </Box>
       </Drawer>

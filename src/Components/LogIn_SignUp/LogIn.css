@@ -1,33 +1,5 @@
-.login-page {
-  height: 120%;
-  width: 100%;
-  position: fixed;
-  /* background-color: rgba(255, 255, 255, 0.4); */
-  background-color: var(--transparent-color);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(8px) saturate(180%);
-  padding: 1rem;
-  box-sizing: border-box;
-  transition: 0.15s all linear;
-}
-
 .login-signup-container {
-  background-color: var(--transparent-color);
-  box-shadow: 0 0 15px var(--box-shadow);
-  border: 2px solid var(--glass-border-color);
-  border-radius: 8px;
-  width: 16rem;
-}
-
-.close-icon {
-  position: absolute;
-  top: 20px;
-  cursor: pointer;
-  right: 20px;
-  color: var(--text-color);
+  max-width: 16rem;
 }
 
 .tab {
@@ -35,8 +7,9 @@
   font-size: 0.8rem !important;
 }
 
-.MuiTabPanel-root {
+.login-signup-container .MuiTabPanel-root {
   padding-bottom: 0.5rem !important;
+  padding-top: 0 !important;
 }
 
 /* login style */
@@ -165,10 +138,41 @@
   }
   .login-page {
     padding: 0.5rem;
+    padding-top: 0;
   }
   .google-btn,
   .facebook-btn {
     font-size: 0.6rem !important;
     line-height: 1.4rem !important;
+  }
+  .tab {
+    font-size: 0.55rem !important;
+  }
+  .login-signup-container .MuiTabPanel-root {
+    padding: 0 !important;
+    font-size: 0.55rem !important;
+  }
+  .signup-text-field {
+    font-size: 0.57rem !important;
+  }
+  .signup-text-field label {
+    font-size: 0.58rem !important;
+    margin-top: 0.2rem !important;
+  }
+  .login-btn {
+    font-size: 0.55rem !important;
+  }
+  .login-options-container {
+    padding: 0;
+  }
+  .login-text-field,
+  .MuiInput-input {
+    font-size: 0.7rem !important;
+  }
+  .google-logo,
+  .facebook-logo {
+    height: 0.8rem;
+    width: 0.8rem;
+    margin: 0 0.5rem;
   }
 }

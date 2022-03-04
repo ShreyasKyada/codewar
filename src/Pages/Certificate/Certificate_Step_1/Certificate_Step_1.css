@@ -293,7 +293,7 @@
   .certi-content {
     margin: 0.5rem 0;
   }
-  .MuiTabs-scroller {
+  .steps-navbar .MuiTabs-scroller {
     overflow: scroll !important;
   }
 }

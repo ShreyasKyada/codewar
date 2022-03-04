@@ -4,11 +4,10 @@ import HeaderLogic from "./HeaderLogic";
 import {
   AppBar,
   Button,
-  Collapse,
   LinearProgress,
-  List,
-  ListItemButton,
   ListItemIcon,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -22,19 +21,24 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
   const {
     HomePageURL,
     gotoLogin,
+    handleClose,
     handleClick,
     open,
-    dropdownURL,
     toggleDarkMode,
     activeTab,
+    anchorEl,
   } = HeaderLogic();
 
   const userprofileAndDropDown = () => {
     // top right corner profile view block
     return (
       <>
-        <ListItemButton
+        <Button
+          id="demo-positioned-button"
+          aria-controls={open ? "demo-positioned-menu" : undefined}
+          aria-haspopup="true"
           className="list-item-btn"
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
           disableRipple={true}
         >
@@ -47,23 +51,38 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
           ) : (
             <ExpandMore className="expand-less-icon" />
           )}
-        </ListItemButton>
-        <Collapse in={open} className="collapse" timeout="auto" unmountOnExit>
-          <List className="list" component="div" disablePadding>
-            <ListItemButton className="list-button" disableRipple={true}>
-              <Button variant="contained" color="primary" className="score-btn">
-                Score: 5000
-              </Button>
-            </ListItemButton>
-            {dropdownURL.map((data, index) => {
-              return (
-                <ListItemButton key={index} className="list-button">
-                  <p className="list-text">{data}</p>
-                </ListItemButton>
-              );
-            })}
-          </List>
-        </Collapse>
+        </Button>
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          className="list"
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <MenuItem onClick={handleClose} className="list-button" disableRipple>
+            <Button variant="contained" color="primary" className="score-btn">
+              Score: 5000
+            </Button>
+          </MenuItem>
+          <MenuItem onClick={handleClose} className="list-button">
+            <p className="list-text">Profile</p>
+          </MenuItem>
+          <MenuItem onClick={handleClose} className="list-button">
+            <p className="list-text">My playgroud</p>
+          </MenuItem>
+          <MenuItem onClick={handleClose} className="list-button">
+            <p className="list-text">Logout</p>
+          </MenuItem>
+        </Menu>
       </>
     );
   };
