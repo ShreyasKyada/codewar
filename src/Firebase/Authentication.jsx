@@ -19,7 +19,7 @@ export const createAnAccount = async (signupData) => {
 
     // Store verification status into a user_verification_status. default value false
     await appRef
-      .child(`user_verification_status/${userCredential.user.uid}`)
+      .child(`users_info/${userCredential.user.uid}`)
       .set({ verification_status: false });
 
     // send verificarion mail using nodejs_backend

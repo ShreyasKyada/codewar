@@ -20,7 +20,7 @@
 .test-question-show-tabpanel {
   background-color: var(--background-color);
   width: 100%;
-  min-height: calc(100vh - 3.38rem);
+  min-height: calc(100vh - 3rem);
   color: var(--text-color);
 }
 
@@ -29,18 +29,29 @@
 }
 
 .time-left-tab {
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .navbar-hide-time {
-    margin: 0 !important;
-    text-transform: none !important;
+  margin: 0 !important;
+  text-transform: none !important;
 }
 
 .question-panel {
-    padding: 0 !important;
-    box-sizing: border-box !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.test-all-questions {
+  min-height: calc(100vh - 3.68rem);
+  position: relative;
+}
+
+.final-test-submit-btn {
+  position: absolute !important;
+  bottom: 0.8rem !important;
+  right: 1.5rem !important;
 }
 
 /* Root element */
@@ -95,7 +106,8 @@
   align-items: center;
 }
 
-.navbar-theme-icon-moon, .navbar-theme-icon {
+.navbar-theme-icon-moon,
+.navbar-theme-icon {
   font-size: 0.63rem !important;
   width: 0.7rem !important;
   cursor: pointer !important;
@@ -127,6 +139,24 @@
   margin-right: 0.2rem;
 }
 
+.navbar-username-container .MuiSvgIcon-root {
+  font-size: 0.95rem !important;
+}
+
 .test-warning-icon {
   font-size: 0.7rem;
+}
+
+/* Alert box */
+
+#alert-dialog-title {
+  font-size: 0.85rem !important;
+}
+
+#alert-dialog-description {
+  font-size: 0.65rem !important;
+}
+
+.agree-btn {
+  font-size: 0.58rem !important;
 }

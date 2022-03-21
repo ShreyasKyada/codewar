@@ -24,7 +24,7 @@ const SubHeader = ({ subHeaderNevigationLink }) => {
       } else if (counter !== Object.keys(subHeaderNevigationLink).length) {
         counter++;
         return (
-          <p key={key} className="subheader-p-tag">
+          <div key={key} className="subheader-p-tag">
             <Link
               to={`${subHeaderNevigationLink[key].link}`}
               className="router-links sub-header-links"
@@ -32,7 +32,7 @@ const SubHeader = ({ subHeaderNevigationLink }) => {
               {subHeaderNevigationLink[key].name}
             </Link>
             <p className="next-indicatore">{">"}</p>
-          </p>
+          </div>
         );
       } else {
         counter++;

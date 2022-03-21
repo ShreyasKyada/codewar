@@ -1,49 +1,76 @@
 import { TabContext, TabPanel } from "@mui/lab";
-import { Divider, Tab, Tabs } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Tab,
+  Tabs,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
-import { loginContext } from "../../Context/LoginContext";
 import "./TestQuestionShow.css";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { themeContext } from "../../Context/ThemeContext";
 import { BsMoon } from "react-icons/bs";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TestQuestionList from "./TestQuestionList/TestQuestionList";
 import TestQuestion from "./TestQuestion/TestQuestion";
+import TestQuestionShowLogic from "./TestQuestionShowLogic";
 
 const TestQuestionShow = () => {
-  const { setIsShowNavbar } = useContext(loginContext);
-  const { isDarkMode, setIsDarkMode } = useContext(themeContext);
-  const [isShowTestNavbar, setIsShowTestNavbar] = useState(true);
-  const [value, setValue] = React.useState("1");
+  const {
+    testQuestionData,
+    isShowTestNavbar,
+    value,
+    handleChange,
+    toggleDarkMode,
+    isDarkMode,
+    listTabNavigation,
+    activeLanguage,
+    editorMode,
+    languageName,
+    submitedQuestions,
+    setSubmitedQuestions,
+    finalTestSubmissionHandler,
+    isOpenDialogBox,
+    handleDialogBoxClose,
+    agreeBtnClick,
+    allLanguagesName,
+    getActiveLang,
+  } = TestQuestionShowLogic();
 
-  useEffect(() => {
-    setIsShowNavbar(false);
-  }, []);
-
-  const handleChange = (event, newValue) => {
-    if (newValue === "0") {
-      return;
-    }
-    if (newValue !== "0") setValue(newValue);
-    if (newValue >= "3") {
-      setIsShowTestNavbar(false);
-    } else {
-      setIsShowTestNavbar(true);
-    }
-  };
-
-  const toggleDarkMode = () => {
-    if (isDarkMode) setIsDarkMode(false);
-    else setIsDarkMode(true);
-  };
+  let tabNumber = 1;
+  let tabValue = 3;
+  let tabPanelNumber = 3;
 
   return (
     <div className="test-question-show-container">
-      {isShowTestNavbar ? (
+      <Dialog
+        open={isOpenDialogBox}
+        onClose={handleDialogBoxClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to submit the test??
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogBoxClose} className="agree-btn">
+            Close
+          </Button>
+          <Button onClick={agreeBtnClick} className="agree-btn">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {isShowTestNavbar && (
         <div className="test-question-show-navbar">
           <div className="left-navbar-container">
             <div className="test-header-logo-codewar">
@@ -58,7 +85,11 @@ const TestQuestionShow = () => {
           </div>
           <div className="right-navbar-container">
             <p className="answered-tag">
-              Answered: <span>0/6</span>
+              Answered:{" "}
+              <span>
+                {submitedQuestions.length}/
+                {testQuestionData ? Object.keys(testQuestionData).length : ""}
+              </span>
             </p>
             <p className="navbar-time">
               <AccessTimeIcon className="navbar-time-icon" /> 90 mins
@@ -82,8 +113,6 @@ const TestQuestionShow = () => {
             </div>
           </div>
         </div>
-      ) : (
-        ""
       )}
       <Box
         sx={{
@@ -116,30 +145,71 @@ const TestQuestionShow = () => {
               className="test-question-show-tab warning-tab"
               label={<RiErrorWarningLine className="test-warning-icon" />}
             />
-            <Tab
-              value="3"
-              className="test-question-show-tab number-tab"
-              label={1}
-            />
-            <Tab
-              value="4"
-              className="test-question-show-tab number-tab"
-              label={2}
-            />
+            {testQuestionData &&
+              Object.keys(testQuestionData).map((id) => {
+                return (
+                  <Tab
+                    value={`${tabValue++}`}
+                    key={id}
+                    className="test-question-show-tab number-tab"
+                    label={tabNumber++}
+                  />
+                );
+              })}
           </Tabs>
 
-          <TabPanel value="1" className="test-question-show-tabpanel">
-            <TestQuestionList />
+          {/* Tab panels */}
+          <TabPanel
+            value="1"
+            className="test-question-show-tabpanel test-all-questions"
+          >
+            <TestQuestionList
+              testQuestionData={testQuestionData}
+              listTabNavigation={listTabNavigation}
+              submitedQuestions={submitedQuestions}
+            />
+            <Button
+              className="test-btn final-test-submit-btn"
+              variant="contained"
+              onClick={finalTestSubmissionHandler}
+            >
+              Submit Test
+            </Button>
           </TabPanel>
           <TabPanel value="2" className="test-question-show-tabpanel">
             Item Two
           </TabPanel>
-          <TabPanel value="3" className="test-question-show-tabpanel question-panel">
-            <TestQuestion />
-          </TabPanel>
-          <TabPanel value="4" className="test-question-show-tabpanel">
-            2
-          </TabPanel>
+
+          {testQuestionData ? (
+            Object.keys(testQuestionData).map((id) => {
+              return (
+                <TabPanel
+                  key={id}
+                  value={`${tabPanelNumber++}`}
+                  className="test-question-show-tabpanel question-panel"
+                >
+                  <TestQuestion
+                    testQuestion={testQuestionData[id]}
+                    activeLanguage={activeLanguage}
+                    editorMode={editorMode}
+                    languageName={languageName}
+                    setSubmitedQuestions={setSubmitedQuestions}
+                    submitedQuestions={submitedQuestions}
+                    id={id}
+                    allLanguagesName={allLanguagesName}
+                    getActiveLang={getActiveLang}
+                  />
+                </TabPanel>
+              );
+            })
+          ) : (
+            <TabPanel
+              value="0"
+              className="test-question-show-tabpanel question-panel"
+            >
+              No
+            </TabPanel>
+          )}
         </TabContext>
       </Box>
     </div>

@@ -4,7 +4,7 @@ import { BsLaptop } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
-const Certificate_Step_2 = () => {
+const Certificate_Step_2 = ({ certificate_name }) => {
   return (
     <div className="certificate-step2-container">
       <div className="step2-container-header">
@@ -24,7 +24,7 @@ const Certificate_Step_2 = () => {
           variant="contained"
           className="proceed-btn"
           component={Link}
-          to="/certificate/id/done"
+          to={`/test-questions-list/certificate/${certificate_name}`}
         >
           Take Test
         </Button>

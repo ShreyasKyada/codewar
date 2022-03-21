@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CertificationCard from "../../Components/CertificationCard/CertificationCard";
@@ -8,11 +9,17 @@ import "./Dashboard.css";
 import DashboardLogic from "./DashboardLogic";
 
 const Dashboard = () => {
-  const { allLanguages } = DashboardLogic();
-  const { setActiveTab } = useContext(loginContext);
+  const {
+    allLanguages,
+    isLanguageSkeleton,
+    isCertificateSkeleton,
+    twoCertificate,
+  } = DashboardLogic();
+  const { setActiveTab, setIsShowNavbar } = useContext(loginContext);
 
   useEffect(() => {
     setActiveTab("Dashboard");
+    setIsShowNavbar(true);
   }, []);
 
   return (
@@ -26,46 +33,83 @@ const Dashboard = () => {
         }}
       />
       <div className="dashboard-container">
-        {/* <h1 className="dashboard-heading">Dashboard</h1> */}
         <p className="certificate-heading">Get Your Skills Certified</p>
         <div className="certification-card-container">
-          <CertificationCard
-            certificateIcon={
-              "https://hrcdn.net/s3_pub/hr-assets/dashboard/ProblemSolving.svg"
-            }
-            skillTitle="Provlem Solving"
-          />
-          <CertificationCard
-            certificateIcon={
-              "https://hrcdn.net/s3_pub/hr-assets/dashboard/Python.svg"
-            }
-            skillTitle="Python"
-          />
-          <CertificationCard skillTitle="Other Skills" />
+          {isCertificateSkeleton ? (
+            <>
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="language-card-container"
+                height={170}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="language-card-container"
+                height={170}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                className="language-card-container"
+                height={170}
+              />
+            </>
+          ) : (
+            <>
+              {twoCertificate ? (
+                Object.keys(twoCertificate).map((id) => {
+                  return (
+                    <CertificationCard
+                      key={id}
+                      certificateIcon={twoCertificate[id].certificate_icon_path}
+                      skillTitle={twoCertificate[id].certificate_name}
+                    />
+                  );
+                })
+              ) : (
+                <h5 className="error-msg">Ohh..Noo!! Nothing to show.</h5>
+              )}
+              <Link to="/certificate" className="router-links">
+                <CertificationCard skillTitle="Other Skills" />
+              </Link>
+            </>
+          )}
         </div>
 
         <div className="language-container">
           <h5>Prepare By Topics</h5>
-          <div className="language-list">
-            {Object.keys(allLanguages).map((id) => {
-              return allLanguages[id].language_name ? (
-                <div className="language-card-container" key={id}>
-                  <Link
-                    className="router-links"
-                    to={`/challenges/${allLanguages[id].language_name}`}
-                    // to={'/challenges/c'}
-                  >
-                    <LanguageCard
-                      iconURL={allLanguages[id].icon_path}
-                      languageName={allLanguages[id].language_name}
-                    />
-                  </Link>
-                </div>
+          {isLanguageSkeleton ? (
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              className="language-card-container"
+              height={150}
+            />
+          ) : (
+            <div className="language-list">
+              {allLanguages ? (
+                Object.keys(allLanguages).map((id) => {
+                  return (
+                    <div className="language-card-container" key={id}>
+                      <Link
+                        className="router-links"
+                        to={`/challenges/${allLanguages[id].language_name}`}
+                      >
+                        <LanguageCard
+                          iconURL={allLanguages[id].icon_path}
+                          languageName={allLanguages[id].language_name}
+                        />
+                      </Link>
+                    </div>
+                  );
+                })
               ) : (
-                ""
-              );
-            })}
-          </div>
+                <h5 className="error-msg">Ohh..Noo!! Nothing to show.</h5>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

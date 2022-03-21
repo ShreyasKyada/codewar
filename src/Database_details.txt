@@ -184,3 +184,29 @@
 ------------- 5. vs mode -------------
 
 - ae pchi krishu 😂😂
+
+
+
+
+
+Jo submit button pr click thse tyare shu??
+
+1. check all test cases... jo bdha test case mathi pass thay to score ma score add krvano...
+
+2. status ne submit krish ane aene show question vala page ma ae staus according batavvish
+    like status run hoy to try again nu btn pchi status submit hoy to solved otherwise solve challenge.
+
+3. jo bdha test case saccha hoy to congratulations nu card batavanu and next question batavanno and jo bdha question solve
+   kri ley to kevanu you complete all questions....
+
+
+This one is divided into 2 part 
+1st is sample test case 
+2nd test cases
+
+
+{script, language, stdin}
+
+
+------------------
+

@@ -1,0 +1,35 @@
+.container {
+  margin: 0 auto;
+  color: var(--text-color);
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.result-bottom-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.done-icon {
+  height: 50px;
+  width: 50px;
+  color: #2fa172;
+  margin-right: 15px;
+  margin-bottom: -15px;
+}
+
+.img {
+  height: 400px;
+  width: 600px;
+}
+
+.result-message {
+  justify-content: space-between;
+  font-size: 20px;
+  line-height: 25px;
+}

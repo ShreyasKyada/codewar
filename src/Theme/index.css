@@ -28,6 +28,7 @@ body.light {
   --scrollbar-background-color: #141414;
   --scrollbar-thumb-color: rgb(163, 163, 163);
   --text-color-1: #0e141e;
+  --sub-header-color: #ededed;
 }
 
 body.dark {
@@ -37,17 +38,39 @@ body.dark {
   --hover-color: #03cffc;
   --transparent-color: rgba(30, 30, 30, 0.6);
   --glass-border-color: rgba(255, 255, 255, 0.125);
-  --box-shadow: rgba(85, 85, 85, 0.836);
+  --box-shadow: rgba(85, 85, 85, 0.548);
   --border-color: white;
   --drawer-paper: rgba(0, 0, 0, 0.342);
   --background-color: #1e1e1e;
-  --tab-box-color: #161616;
+  --tab-box-color: #2b2b2bc0;
   --scrollbar-background-color: rgb(48, 47, 47);
   --scrollbar-thumb-color: rgb(99, 99, 99);
   --text-color-1: #dcdcdd;
+  --hover-color-box-shadow: #03cefc8e;
+  --sub-header-color: #262626;
 }
 
 .router-links {
   color: var(--text-color);
   text-decoration: none;
+}
+
+.error-msg {
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1px;
+  color: var(--text-color);
+}
+
+/* Modify scroll bar */
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: var(--mode);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 10px;
 }

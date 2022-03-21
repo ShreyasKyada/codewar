@@ -13,7 +13,6 @@ const AuthContext = ({ children }) => {
     } else {
       setValidUser(true);
     }
-    // console.log("state change", user);
   });
 
   return (

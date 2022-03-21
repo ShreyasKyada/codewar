@@ -1,0 +1,90 @@
+.userprofile-parent-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.qid-heading {
+  color: var(--text-color);
+  margin-right: 1.8rem;
+  align-self: flex-end;
+  font-size: 0.9rem ;
+  letter-spacing: 1px;
+}
+
+.userprofile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--text-color);
+  padding-top: 0 !important;
+}
+
+.userprofile-sub-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80%;
+  min-height: 80%;
+  padding-top: 1rem;
+
+}
+
+.userprofile-sub-left {
+  padding: 0.5rem;
+  margin-right: 1.9rem;
+  min-width: 40%;
+  min-height: 30%;
+  box-shadow: 0 0 37px #05d0ebb7;
+  border: 2px solid #05d0ebbb;
+  background-color: var(--transparent-color);
+  backdrop-filter: blur(5px);
+}
+
+.containt {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 0.3rem;
+  font-size: 0.78rem;
+}
+
+.userprofile-sub-right {
+  padding: 0.5rem;
+  min-width: 40%;
+  min-height: 30%;
+  margin-left: 1.9rem;
+  box-shadow: 0 0 37px #e10700a4;
+  border: 2px solid #e10700a4;
+  background-color: var(--transparent-color);
+  backdrop-filter: blur(5px);
+}
+
+.profile-icon {
+  font-size: 1.2rem !important;
+}
+
+.card {
+  padding: 1rem !important;
+}
+
+.question-card {
+  min-height: 250px;
+  background-color: var(--transparent-color) !important;
+  padding: 0 0.8rem;
+}
+
+.question-card-skeleton {
+  min-height: 250px;
+  padding: 0 0.8rem;
+}
+
+.other-text-details {
+  font-size: 0.66rem;
+}
+
+.userprofile-btn {
+  width: 6rem !important;
+  margin: 0 auto !important;
+  font-size: 0.6rem !important;
+}

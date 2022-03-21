@@ -27,6 +27,7 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
     toggleDarkMode,
     activeTab,
     anchorEl,
+    logOut,
   } = HeaderLogic();
 
   const userprofileAndDropDown = () => {
@@ -79,7 +80,13 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
           <MenuItem onClick={handleClose} className="list-button">
             <p className="list-text">My playgroud</p>
           </MenuItem>
-          <MenuItem onClick={handleClose} className="list-button">
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              logOut();
+            }}
+            className="list-button"
+          >
             <p className="list-text">Logout</p>
           </MenuItem>
         </Menu>

@@ -22,7 +22,7 @@ const ContestCard = ({ data, id }) => {
             <Button
               variant="contained"
               component={Link}
-              to={`/Contest/${id}`}
+              to={`/Contest/${data.contest_name}`}
               className="contest-btn"
             >
               Sign Up

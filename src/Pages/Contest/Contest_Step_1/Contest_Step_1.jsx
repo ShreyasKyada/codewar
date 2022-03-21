@@ -4,10 +4,11 @@ import { InputLabel, FormControl, NativeSelect } from "@mui/material";
 import Button from "@mui/material/Button";
 import "./Contest_Step_1.css";
 import { loginContext } from "../../../Context/LoginContext";
+import { Link, useParams } from "react-router-dom";
 
 const Contest_Step_1 = () => {
   const { setIsShowNavbar } = useContext(loginContext);
-
+  const { name } = useParams();
   useEffect(() => {
     setIsShowNavbar(false);
   }, []);
@@ -16,34 +17,34 @@ const Contest_Step_1 = () => {
     <div className="conteststep1-container">
       <div className="conteststep1-container-left">
         <div className="conteststep1-title">
-          <a href="/dashboard" class="dashboard-link">
+          <a href="/dashboard" className="dashboard-link">
             <img
               className="logo"
               src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=bd2d177a-3210-43d5-8a49-db66b4a94cdb"
               alt="Logo"
             />
           </a>
-          <h1 class="conteststep1-name">
+          <h1 className="conteststep1-name">
             National Disability Independence Day 2021 Coding Contest
           </h1>
-          <div class="contest-detail-header">
+          <div className="contest-detail-header">
             Competition Duration
-            <div class="contest-detail-content">180 minutes</div>
+            <div className="contest-detail-content">180 minutes</div>
           </div>
-          <div class="contest-detail-header">
+          <div className="contest-detail-header">
             Starts at
-            <div class="contest-detail-content">7/23/2021 - 9:30PM</div>
+            <div className="contest-detail-content">7/23/2021 - 9:30PM</div>
           </div>
-          <div class="contest-detail-header">
+          <div className="contest-detail-header">
             Ends at
-            <div class="contest-detail-content">7/27/2021 - 9:30PM</div>
+            <div className="contest-detail-content">7/27/2021 - 9:30PM</div>
           </div>
         </div>
       </div>
 
       <div className="conteststep1-container-right">
-        <div class="scrolling-form-page page-1">
-          <div class="contest-scrolling-page">
+        <div className="scrolling-form-page page-1">
+          <div className="contest-scrolling-page">
             <h5>Welcome!</h5>
             <p className="paragraph">
               Welcome to HackerRank's Celebrate National Disability Independence
@@ -69,9 +70,42 @@ const Contest_Step_1 = () => {
           </div>
         </div>
 
-        <div class="scrolling-form-page page-2">
-          <div class="scrolling-form-page-section">
-            <div class="scrolling-page">
+        <div className="scrolling-form-page page-2">
+          <div className="scrolling-form-page-section form-3">
+            <div className="scrolling-page">
+              <h5>The Rules</h5>
+
+              <p className="paragraph">
+                1. This contest is for individuals; teams are not allowed.
+              </p>
+              <p className="paragraph">
+                2. Any competitor found cheating will be disqualified and banned
+                from future coding contests.
+              </p>
+              <p className="paragraph">
+                <strong>Scoring:&nbsp;</strong>
+              </p>
+
+              <p className="paragraph">
+                Participants are ranked by score. Your score is determined by
+                the number of test cases your code submission successfully
+                passes. If two participants have the same score, the tie is
+                broken by the contestant with the lowest amount of time taken.
+              </p>
+
+              <Button
+                style={{ fontSize: 15, marginTop: "0.5rem" }}
+                variant="contained"
+              >
+                Try Sample Test
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="scrolling-form-page page-2">
+          <div className="scrolling-form-page-section">
+            <div className="scrolling-page">
               <h5>Registration Form</h5>
               <div className="paragraph">
                 Logged in as <strong>krupalidevani22@gmail.com</strong>
@@ -238,41 +272,10 @@ const Contest_Step_1 = () => {
               <Button
                 style={{ fontSize: 15, marginTop: "0.5rem" }}
                 variant="contained"
+                component={Link}
+                to={`/test-questions-list/contest/${name}`}
               >
                 Submit
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div class="scrolling-form-page page-2">
-          <div class="scrolling-form-page-section form-3">
-            <div class="scrolling-page">
-              <h5>The Rules</h5>
-
-              <p className="paragraph">
-                1. This contest is for individuals; teams are not allowed.
-              </p>
-              <p className="paragraph">
-                2. Any competitor found cheating will be disqualified and banned
-                from future coding contests.
-              </p>
-              <p className="paragraph">
-                <strong>Scoring:&nbsp;</strong>
-              </p>
-
-              <p className="paragraph">
-                Participants are ranked by score. Your score is determined by
-                the number of test cases your code submission successfully
-                passes. If two participants have the same score, the tie is
-                broken by the contestant with the lowest amount of time taken.
-              </p>
-
-              <Button
-                style={{ fontSize: 15, marginTop: "0.5rem" }}
-                variant="contained"
-              >
-                Try Sample Test
               </Button>
             </div>
           </div>

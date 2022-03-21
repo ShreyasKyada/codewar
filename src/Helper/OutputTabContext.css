@@ -1,0 +1,153 @@
+.question-show-tabs {
+  min-width: fit-content !important;
+  background-color: var(--tab-box-color) !important;
+  backdrop-filter: blur(7px) !important;
+}
+
+.question-show-tab-green.Mui-selected {
+  background-color: var(--background-color) !important;
+  color: #1ba94c !important;
+}
+
+.question-show-tab-green {
+  background-color: var(--tab-box-color) !important;
+  color: #1ba94c !important;
+  backdrop-filter: blur(7px) !important;
+}
+
+.question-show-tab-red {
+  background-color: var(--tab-box-color) !important;
+  color: #f02345 !important;
+  backdrop-filter: blur(7px) !important;
+}
+
+.question-show-tab-red.Mui-selected {
+  background-color: var(--background-color) !important;
+  color: #f02345 !important;
+}
+
+.question-show-tabs .MuiTabs-indicator {
+  left: 0 !important;
+  width: 0 !important;
+}
+
+.question-show-tabPanel .MuiTabs-scroller {
+  overflow-y: scroll !important;
+}
+
+.question-show-tab {
+  font-size: 0.55rem !important;
+}
+
+.question-show-tabPanel {
+  padding: 0 !important;
+  width: 100%;
+  overflow-y: scroll;
+  backdrop-filter: blur(7px);
+}
+
+.input-stdin-container {
+  margin: 1.3rem 0;
+}
+
+.your-output-container,
+.expected-output-container {
+  margin-bottom: 1.3rem;
+}
+
+.input-stdin-heading {
+  font-size: 0.58rem;
+  margin-bottom: 11px;
+}
+
+.tabpanel-code-editor {
+  line-height: 33px !important;
+  user-select: text;
+}
+
+.tabpanel-code-editor .ace_cursor-layer {
+  width: 0 !important;
+}
+
+.tabpanel-code-editor .ace_content {
+  left: 4px !important;
+}
+
+.compilation-error-container-msg {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  width: 100%;
+  height: 100%;
+}
+
+.red {
+  color: #f02345;
+}
+
+.green {
+  color: #1ba94c;
+}
+
+/* test case tabs */
+.question-show-testcase-tabs {
+  /* add some style on QuestionShowLogic.jsx file */
+  display: flex;
+  max-height: 15.5rem !important;
+  height: fit-content;
+  box-shadow: 0 0 20px #03cefc79;
+  border: 2px solid var(--hover-color);
+  visibility: hidden;
+}
+
+/* Errors headings */
+.test-case-headings-container {
+  padding: 1.5rem 0;
+}
+
+.test-case-error-info {
+  font-size: 0.55rem;
+  margin: 0;
+}
+
+.test-case-heading {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.loading-card {
+  display: flex;
+  padding: 0.2rem !important;
+  font-size: 0.6rem !important;
+  align-items: center;
+}
+
+.loading-state {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.loading-state p {
+  margin: 0 0.7rem;
+}
+
+.output-container {
+  margin: 1rem;
+}
+
+.tab-name-p {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.tab-name-icon {
+  font-size: 0.7rem !important;
+  margin-right: 6px;
+}

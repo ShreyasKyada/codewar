@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Certificate_Step_1.css";
 import { RiMedal2Line, RiErrorWarningLine } from "react-icons/ri";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -7,13 +7,22 @@ import { Button, TextField } from "@mui/material";
 import { TabPanel, TabList, TabContext } from "@mui/lab";
 import { Tab } from "@mui/material";
 import Certificate_Step_2 from "../Certificate_Step_2/Certificate_Step_2";
+import { loginContext } from "../../../Context/LoginContext";
+import { useParams } from "react-router-dom";
 
 const Certificate_Step_1 = () => {
   const [navigationTabValue, setNavigationTabValue] = useState("3");
+  const { setActiveTab, setIsShowNavbar } = useContext(loginContext);
+  const { certificate_name } = useParams();
 
   const navigationTabs = (event, newValue) => {
     setNavigationTabValue(newValue);
   };
+
+  useEffect(() => {
+    setActiveTab("Certify");
+    setIsShowNavbar(true);
+  }, []);
 
   return (
     <>
@@ -147,7 +156,7 @@ const Certificate_Step_1 = () => {
                   </Button>
                 </TabPanel>
                 <TabPanel value="4" className="tabpanel-certi">
-                  <Certificate_Step_2 />
+                  <Certificate_Step_2 certificate_name={certificate_name} />
                 </TabPanel>
               </div>
             </div>

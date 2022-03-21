@@ -4,11 +4,10 @@ import Checkbox from "@mui/material/Checkbox";
 import "./Challenges.css";
 import { FormControlLabel } from "@mui/material";
 import ChallengesLogic from "./ChallengesLogic";
-import { Link } from "react-router-dom";
 import SubHeader from "../../Components/SubHeader/SubHeader";
 
 const Challenges = () => {
-  const { languageList, languageName } = ChallengesLogic();
+  const { languageList, languageName, playWithFrdBtn } = ChallengesLogic();
 
   return (
     <>
@@ -20,23 +19,29 @@ const Challenges = () => {
           },
           languageName: {
             name: languageName,
-            link: ""
+            link: "",
           },
         }}
       />
       <div className="challenge-container">
         <div className="all-challenge-card-container">
-          {Object.keys(languageList).map((id) => {
-            return (
-              <Link
-                className="router-links"
-                key={id}
-                to={`/question-show/${languageName}/${id}`}
-              >
-                <QuestionCard data={languageList[id]} />
-              </Link>
-            );
-          })}
+          {languageList ? (
+            Object.keys(languageList)
+              .map((id) => {
+                return (
+                  <QuestionCard
+                    key={id}
+                    data={languageList[id]}
+                    languageName={languageName}
+                    id={id}
+                    playWithFrdBtn={() => playWithFrdBtn(id, languageName)}
+                  />
+                );
+              })
+              .reverse()
+          ) : (
+            <h5 className="error-msg">Ohh..Noo!! Nothing to show.</h5>
+          )}
         </div>
 
         <section className="check-box-container">

@@ -1,17 +1,3 @@
-/* Modify scroll bar */
-::-webkit-scrollbar {
-  width: 7px;
-  /* background-color: var(--scrollbar-background-color); */
-  background-color: var(--mode);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
-  /* background-color: black; */
-  border-radius: 10px;
-}
-
 .test-question {
   height: 100vh;
   box-sizing: border-box;
@@ -39,7 +25,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 12px;
+  transform: translateX(50%);
+  width: 12.8px;
   height: 100%;
   background-color: var(--glass-border-color);
   cursor: col-resize;
@@ -58,6 +45,8 @@
 
 .test-right-side-container {
   width: 100%;
+  margin-left: 6px;
+  overflow-y: scroll;
 }
 
 .test-right-top-container {
@@ -71,14 +60,14 @@
   display: flex;
   align-items: center;
   width: 5.5rem;
-  font-size: .5rem;
+  font-size: 0.5rem;
   margin: 0 0.5rem;
 }
 
 .test-language-dropdown {
-  font-size: .5rem;
-  margin-left: .3rem;
-  line-height: .45rem;
+  font-size: 0.5rem;
+  margin-left: 0.3rem;
+  line-height: 0.45rem;
   min-width: 100% !important;
 }
 
@@ -101,23 +90,37 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: .3rem .8rem;
+  margin: 0.3rem 0.8rem;
+}
+
+.test-against-container {
+  display: inline-block;
+  width: fit-content !important;
+}
+
+.test-against-container .MuiSvgIcon-root {
+  font-size: 0.85rem !important;
+  padding: 0 9px !important;
+}
+
+.test-against-container .MuiCheckbox-root {
+  padding: 0 9px !important;
 }
 
 .test-question-code-editor {
-  height: calc(100vh - 3.9rem) !important;
+  height: calc(100vh - 4rem) !important;
 }
 
 .test-code-submit-btn-container {
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .test-btn {
-  font-size: .5rem !important;
-  text-transform: none !important; 
+  font-size: 0.5rem !important;
+  text-transform: none !important;
   letter-spacing: 1px !important;
   width: 5rem !important;
-  margin: 0 .2rem !important;
+  margin: 0 0.2rem !important;
   border-radius: 0 !important;
   float: right;
   font-family: "rubik" !important;
@@ -132,6 +135,12 @@
 .test-result-btn {
   float: left !important;
   color: var(--text-color) !important;
-  font-size: .6rem !important;
+  font-size: 0.6rem !important;
   font-family: "rubik" !important;
+}
+
+.tab-context-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 .7rem;
 }

@@ -1,9 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./QuestionCard.css";
 
-const QuestionCard = ({ data }) => {
+const QuestionCard = ({ data, languageName, id, playWithFrdBtn }) => {
   return (
     <>
       <div className="challenge-card-container">
@@ -18,10 +18,16 @@ const QuestionCard = ({ data }) => {
           </p>
         </section>
         <section className="card-right-container">
-          <Button variant="outlined" className="btn-play" color="primary">
+          <Button variant="outlined" className="btn-play" color="primary" onClick={playWithFrdBtn}>
             Play With Friend
           </Button>
-          <Button variant="outlined" className="button-problem" color="primary">
+          <Button
+            variant="outlined"
+            className="button-problem"
+            color="primary"
+            component={Link}
+            to={`/question-show/${languageName}/${id}`}
+          >
             Solve Problem
           </Button>
         </section>

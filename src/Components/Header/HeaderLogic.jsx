@@ -39,7 +39,6 @@ const HeaderLogic = () => {
   };
 
   const logOut = () => {
-    // console.log("logOut");
     signOut(auth);
     setValidUser(false);
   };

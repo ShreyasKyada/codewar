@@ -51,9 +51,10 @@
 }
 
 .contest-btn {
-  font-size: 0.6rem !important;
+  font-size: 0.55rem !important;
   text-transform: none !important;
   width: 4.5rem !important;
+  padding: 5px 0 !important;
 }
 
 .contest-collapse-container {

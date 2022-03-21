@@ -1,7 +1,7 @@
 {
   "name": "codewar",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000/",
+  "proxy": "https://codewar-project-2022-340013.uc.r.appspot.com/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
