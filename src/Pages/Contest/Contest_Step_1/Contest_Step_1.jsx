@@ -1,43 +1,56 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { InputLabel, FormControl, NativeSelect } from "@mui/material";
 import Button from "@mui/material/Button";
 import "./Contest_Step_1.css";
 import { loginContext } from "../../../Context/LoginContext";
 import { Link, useParams } from "react-router-dom";
+import appRef, { auth } from "../../../Firebase/Firebase";
 
 const Contest_Step_1 = () => {
   const { setIsShowNavbar } = useContext(loginContext);
+  const [contestData, setContestData] = useState({});
   const { name } = useParams();
+
+  document.title = `${contestData.contest_name} | CodeWar`;
+
   useEffect(() => {
     setIsShowNavbar(false);
+    let cleanUp = true;
+    if (cleanUp) {
+      appRef.child(`/contest/${name}`).on("value", (snapshot) => {
+        setContestData(snapshot.val());
+      });
+    }
+
+    return () => (cleanUp = false);
   }, []);
 
   return (
     <div className="conteststep1-container">
       <div className="conteststep1-container-left">
         <div className="conteststep1-title">
-          <a href="/dashboard" className="dashboard-link">
+          <a href="/dashboard" className="dashboard-link logo-img">
             <img
               className="logo"
-              src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=bd2d177a-3210-43d5-8a49-db66b4a94cdb"
+              src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/Logo.svg?alt=media&token=6d889c90-3c92-4f71-860a-f94ddf636275"
               alt="Logo"
             />
           </a>
-          <h1 className="conteststep1-name">
-            National Disability Independence Day 2021 Coding Contest
-          </h1>
+          <h1 className="conteststep1-name">{contestData.contest_name}</h1>
           <div className="contest-detail-header">
             Competition Duration
-            <div className="contest-detail-content">180 minutes</div>
+            <div className="contest-detail-content">{contestData.duration}</div>
           </div>
           <div className="contest-detail-header">
             Starts at
-            <div className="contest-detail-content">7/23/2021 - 9:30PM</div>
+            <div className="contest-detail-content">
+              {contestData.starts_at}
+            </div>
           </div>
           <div className="contest-detail-header">
             Ends at
-            <div className="contest-detail-content">7/27/2021 - 9:30PM</div>
+            <div className="contest-detail-content">{contestData.ends_at}</div>
           </div>
         </div>
       </div>
@@ -46,33 +59,22 @@ const Contest_Step_1 = () => {
         <div className="scrolling-form-page page-1">
           <div className="contest-scrolling-page">
             <h5>Welcome!</h5>
-            <p className="paragraph">
-              Welcome to HackerRank's Celebrate National Disability Independence
-              Day&nbsp;2021 Coding Challenge, a coding contest where your
-              winnings help support a cause in need. Compete against top coders
-              from around the world to give $500 to a U.S. charity that
-              increases opportunities for people with disabilities.
-            </p>
+            <p className="paragraph">Welcome to {contestData.description}</p>
 
-            <h5>Prizes</h5>
-            <div className="rank">
-              <p>1st place: Airpods Pro</p>
-              <p>2nd place: Beats Solo3</p>
-              <p>3rd place: Razer BlackWidow Gaming Keyboard</p>
-            </div>
-
-            <Button
-              style={{ fontSize: 15, marginTop: "0.5rem" }}
-              variant="contained"
-            >
-              Let's Begin!
-            </Button>
+            <a href="#page-2" className="router-links">
+              <Button
+                style={{ fontSize: 15, marginTop: "0.5rem" }}
+                variant="contained"
+              >
+                Let's Begin!
+              </Button>
+            </a>
           </div>
         </div>
 
         <div className="scrolling-form-page page-2">
           <div className="scrolling-form-page-section form-3">
-            <div className="scrolling-page">
+            <div className="scrolling-page" id="page-2">
               <h5>The Rules</h5>
 
               <p className="paragraph">
@@ -92,13 +94,6 @@ const Contest_Step_1 = () => {
                 passes. If two participants have the same score, the tie is
                 broken by the contestant with the lowest amount of time taken.
               </p>
-
-              <Button
-                style={{ fontSize: 15, marginTop: "0.5rem" }}
-                variant="contained"
-              >
-                Try Sample Test
-              </Button>
             </div>
           </div>
         </div>
@@ -108,7 +103,7 @@ const Contest_Step_1 = () => {
             <div className="scrolling-page">
               <h5>Registration Form</h5>
               <div className="paragraph">
-                Logged in as <strong>krupalidevani22@gmail.com</strong>
+                Logged in as <strong>{auth.currentUser.email}</strong>
               </div>
 
               <form>
@@ -124,10 +119,95 @@ const Contest_Step_1 = () => {
                     id="standard-required"
                     label="Name"
                     variant="standard"
-                    style={{ padding: "0.5rem" }}
-                    InputProps={{ style: { fontSize: 20 } }}
-                    InputLabelProps={{ style: { fontSize: 15 } }}
+                    InputProps={{ style: { fontSize: 15 } }}
+                    InputLabelProps={{ style: { fontSize: 18 } }}
                   />
+                </div>
+
+                <div className="contest-form-control-container">
+                  <FormControl
+                    required
+                    style={{
+                      marginTop: "0.5rem",
+                      width: "6.5rem",
+                      paddingTop: "0.5rem",
+                    }}
+                  >
+                    <InputLabel
+                      sx={{ m: 1, fontSize: 20 }}
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      Country
+                    </InputLabel>
+                    <NativeSelect
+                      inputProps={{
+                        name: "country",
+                        id: "uncontrolled-native",
+                      }}
+                      sx={{ m: 1, fontSize: 20 }}
+                    >
+                      <option>India</option>
+                      <option>USA</option>
+                      <option>Uk</option>
+                    </NativeSelect>
+                  </FormControl>
+
+                  <FormControl
+                    required
+                    style={{
+                      marginTop: "0.5rem",
+                      width: "6.5rem",
+                      paddingTop: "0.5rem",
+                    }}
+                  >
+                    <InputLabel
+                      sx={{ m: 1, fontSize: 20 }}
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      State
+                    </InputLabel>
+                    <NativeSelect
+                      inputProps={{
+                        name: "state",
+                        id: "uncontrolled-native",
+                      }}
+                      sx={{ m: 1, fontSize: 20 }}
+                    >
+                      <option>Gujrat</option>
+                      <option>Maharashtra</option>
+                      <option>Punjab</option>
+                    </NativeSelect>
+                  </FormControl>
+
+                  <FormControl
+                    required
+                    style={{
+                      marginTop: "0.5rem",
+                      width: "6.5rem",
+                      paddingTop: "0.5rem",
+                    }}
+                  >
+                    <InputLabel
+                      sx={{ m: 1, fontSize: 20 }}
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      City
+                    </InputLabel>
+                    <NativeSelect
+                      inputProps={{
+                        name: "city",
+                        id: "uncontrolled-native",
+                      }}
+                      sx={{ m: 1, fontSize: 20 }}
+                    >
+                      <option>Surat</option>
+                      <option>Rajkot</option>
+                      <option>Ahemdabad</option>
+                    </NativeSelect>
+                  </FormControl>
                 </div>
 
                 <FormControl
@@ -135,90 +215,8 @@ const Contest_Step_1 = () => {
                   style={{
                     marginTop: "0.5rem",
                     width: "6.5rem",
-                    padding: "0.5rem",
-                  }}
-                >
-                  <InputLabel
-                    sx={{ m: 1, fontSize: 20 }}
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  >
-                    Country
-                  </InputLabel>
-                  <NativeSelect
-                    inputProps={{
-                      name: "country",
-                      id: "uncontrolled-native",
-                    }}
-                    sx={{ m: 1, fontSize: 20 }}
-                  >
-                    <option>India</option>
-                    <option>USA</option>
-                    <option>Uk</option>
-                  </NativeSelect>
-                </FormControl>
-
-                <FormControl
-                  required
-                  style={{
-                    marginTop: "0.5rem",
-                    width: "6.5rem",
-                    padding: "0.5rem",
-                  }}
-                >
-                  <InputLabel
-                    sx={{ m: 1, fontSize: 20 }}
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  >
-                    State
-                  </InputLabel>
-                  <NativeSelect
-                    inputProps={{
-                      name: "state",
-                      id: "uncontrolled-native",
-                    }}
-                    sx={{ m: 1, fontSize: 20 }}
-                  >
-                    <option>Gujrat</option>
-                    <option>Maharashtra</option>
-                    <option>Punjab</option>
-                  </NativeSelect>
-                </FormControl>
-                <FormControl
-                  required
-                  style={{
-                    marginTop: "0.5rem",
-                    width: "7rem",
-                    padding: "0.5rem",
-                  }}
-                >
-                  <InputLabel
-                    sx={{ m: 1, fontSize: 20 }}
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  >
-                    City
-                  </InputLabel>
-                  <NativeSelect
-                    inputProps={{
-                      name: "city",
-                      id: "uncontrolled-native",
-                    }}
-                    sx={{ m: 1, fontSize: 20 }}
-                  >
-                    <option>Surat</option>
-                    <option>Rajkot</option>
-                    <option>Ahemdabad</option>
-                  </NativeSelect>
-                </FormControl>
-
-                <FormControl
-                  required
-                  style={{
-                    marginTop: "0.5rem",
-                    width: "8.0rem",
-                    padding: "0.5rem",
+                    paddingTop: "0.5rem",
+                    marginRight: "1.75rem",
                   }}
                 >
                   <InputLabel
@@ -245,8 +243,8 @@ const Contest_Step_1 = () => {
                   required
                   style={{
                     marginTop: "0.5rem",
-                    width: "8.0rem",
-                    padding: "0.5rem",
+                    width: "6.5rem",
+                    paddingTop: "0.5rem",
                   }}
                 >
                   <InputLabel
@@ -273,7 +271,7 @@ const Contest_Step_1 = () => {
                 style={{ fontSize: 15, marginTop: "0.5rem" }}
                 variant="contained"
                 component={Link}
-                to={`/test-questions-list/contest/${name}`}
+                to={`/test-questions-list/contest/${contestData.contest_name}`}
               >
                 Submit
               </Button>

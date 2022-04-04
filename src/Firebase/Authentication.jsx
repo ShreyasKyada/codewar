@@ -18,9 +18,17 @@ export const createAnAccount = async (signupData) => {
     updateProfile(auth.currentUser, { displayName: signupData.username });
 
     // Store verification status into a user_verification_status. default value false
-    await appRef
-      .child(`users_info/${userCredential.user.uid}`)
-      .set({ verification_status: false });
+    await appRef.child(`users_info/${userCredential.user.uid}`).set({
+      verification_status: false,
+      about: {
+        more_about: "none",
+        current: "none",
+        graduation_year: "none",
+      },
+      email: userCredential.user.email,
+      username: signupData.username,
+      score: 0,
+    });
 
     // send verificarion mail using nodejs_backend
     const verificationDetails = {
@@ -49,7 +57,6 @@ export const login = async (loginData) => {
     return "none";
   } catch (error) {
     loginError = error;
-    // console.log(error);
   }
 
   return loginError;

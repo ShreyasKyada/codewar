@@ -23,7 +23,7 @@
 .active-tab::after {
   content: "";
   position: absolute;
-  bottom: -105%;
+  bottom: -23px;
   height: 3px;
   background-color: var(--hover-color);
   width: 105%;
@@ -38,9 +38,7 @@
 }
 
 .header-logo {
-  /* height: 1.7rem;
-  width: 2.6rem; */
-  height: 3rem;
+  height: 1.4rem;
   width: 7rem;
   margin: 0.5rem 1rem 0.5rem 3rem;
 }
@@ -201,6 +199,10 @@
 .list-item-text {
   font-size: 0.6rem !important;
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 3rem;
+  overflow: hidden;
 }
 
 .expand-less-icon {

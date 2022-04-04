@@ -15,6 +15,8 @@ const Certificate_step_3 = () => {
     setIsShowNavbar(true);
   }, []);
 
+  document.title = `Certifify | CodeWar`;
+
   return (
     <>
       <SubHeader

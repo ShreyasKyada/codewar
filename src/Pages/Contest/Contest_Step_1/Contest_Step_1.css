@@ -18,6 +18,7 @@
   align-items: center;
   color: var(--text-color);
   box-shadow: 0 3px 15px var(--box-shadow);
+  overflow: scroll;
 }
 
 .conteststep1-title {
@@ -36,6 +37,12 @@
 
 .logo {
   width: 300px;
+}
+
+.logo-img {
+  margin-left: 0.1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
 }
 
 .conteststep1-name {
@@ -76,11 +83,11 @@
 }
 
 .page-1 {
-    min-height: 22rem;
+  min-height: 22rem;
 }
 
 .page-2 {
-    min-height: 30rem;
+  min-height: 30rem;
 }
 
 .paragraph {
@@ -88,8 +95,10 @@
   line-height: 0.84rem;
 }
 
-.rank {
-  font-size: 20px;
+.contest-form-control-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.7rem 0;
 }
 
 .form-3 {

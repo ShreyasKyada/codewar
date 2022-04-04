@@ -13,6 +13,8 @@ const Certificate = () => {
     setActiveTab("Certify");
   }, []);
 
+  document.title = "Certifify | CodeWar";
+
   return (
     <>
       <div className="skills-container">

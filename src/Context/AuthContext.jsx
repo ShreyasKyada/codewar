@@ -1,11 +1,20 @@
 import { onAuthStateChanged } from "firebase/auth";
-import React, { createContext, useState } from "react";
-import { auth } from "../Firebase/Firebase";
+import React, { createContext, useEffect, useState } from "react";
+import appRef, { auth } from "../Firebase/Firebase";
 
 export const authContext = createContext();
 
 const AuthContext = ({ children }) => {
   const [validUser, setValidUser] = useState(false);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    if(validUser) {
+      appRef.child(`users_info/${auth.currentUser.uid}/score`).on("value",(snapshot) => {
+        setScore(snapshot.val());
+      })
+    }
+  }, [validUser]);
 
   onAuthStateChanged(auth, (user) => {
     if (user === null) {
@@ -16,7 +25,7 @@ const AuthContext = ({ children }) => {
   });
 
   return (
-    <authContext.Provider value={{ validUser, setValidUser }}>
+    <authContext.Provider value={{ validUser, setValidUser, score }}>
       {children}
     </authContext.Provider>
   );

@@ -19,6 +19,7 @@ const LogIn = () => {
     hideSnackbar,
     loginFun,
     getLoginData,
+    isLoadingState,
   } = LoginLogic();
 
   return (
@@ -73,6 +74,7 @@ const LogIn = () => {
                 className="login-btn"
                 variant="contained"
                 onClick={signUpBtnFun}
+                disabled={isLoadingState ? true : false}
               >
                 Sign up
               </Button>
@@ -93,6 +95,7 @@ const LogIn = () => {
                 variant="standard"
                 label="Your password"
                 name="password"
+                type="password"
                 onChange={getLoginData}
               />
               <Link to="/" className="forgot-password">
@@ -102,6 +105,7 @@ const LogIn = () => {
                 className="login-btn"
                 variant="contained"
                 onClick={loginFun}
+                disabled={isLoadingState ? true : false}
               >
                 Log In
               </Button>

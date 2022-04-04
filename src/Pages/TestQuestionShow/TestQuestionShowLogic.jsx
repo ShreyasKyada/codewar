@@ -7,7 +7,7 @@ import { getCodeEditorLanguageMode } from "../../Helper/CodeEditorThemes";
 
 const TestQuestionShowLogic = () => {
   const [testQuestionData, setTestQuestionData] = useState({});
-  const { type, name } = useParams();
+  const { type, name, join } = useParams();
   const { setIsShowNavbar, setSnackbarData } = useContext(loginContext);
   const { isDarkMode, setIsDarkMode } = useContext(themeContext);
   const [isShowTestNavbar, setIsShowTestNavbar] = useState(true);
@@ -22,31 +22,76 @@ const TestQuestionShowLogic = () => {
   const [isOpenDialogBox, setIsOpenDialogBox] = useState(false);
   const navigate = useNavigate();
   const [allLanguagesName, setAllLanguagesName] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   let languageName = name.split("(")[0].trim();
 
   useEffect(() => {
     let cleanup = true;
     // Set Editor theme
     if (type === "contest") {
-      setAllLanguagesName(["C", "C++", "java"]);
+      setAllLanguagesName([
+        "C",
+        "C++",
+        "Java",
+        "Php",
+        "Javascript",
+        "Perl",
+        "Python",
+        "Ruby",
+        "C#",
+        "Swift",
+      ]);
       setActiveLanguage("C");
       setEditorMode(getCodeEditorLanguageMode("C"));
-    } else {
+      if (cleanup) {
+        appRef.child(`${type}_questions/${name}`).on("value", (snapshot) => {
+          if (cleanup) setTestQuestionData(snapshot.val());
+        });
+      }
+    } else if (type === "certificate") {
       setActiveLanguage(languageName);
       setEditorMode(getCodeEditorLanguageMode(languageName));
-    }
-
-    if (cleanup) {
-      appRef.child(`${type}_questions/${name}`).on("value", (snapshot) => {
-        setTestQuestionData(snapshot.val());
+      if (cleanup) {
+        appRef.child(`${type}_questions/${name}`).on("value", (snapshot) => {
+          if (cleanup) setTestQuestionData(snapshot.val());
+        });
+      }
+    } else if (type === "vsmode") {
+      appRef.child(`/vs_mode/${name}`).on("value", (snapshot) => {
+        const snap = snapshot.val();
+        if (snap !== null) {
+          if (cleanup) {
+            setAllLanguagesName([snap.languageName]);
+            setActiveLanguage(snap.languageName);
+            setEditorMode(getCodeEditorLanguageMode(snap.languageName));
+            setUserInfo(snap);
+            appRef.child(snap.path).on("value", (innerSnapshot) => {
+              let innerSnap = innerSnapshot.val();
+              const tempObjValue = innerSnap;
+              let tempObj = {
+                tempObjValue,
+              };
+              if (cleanup) {
+                setTestQuestionData(tempObj);
+                setValue("3");
+              }
+            });
+          }
+        }
       });
     }
 
-    return () => (cleanup = false);
+    return () => {
+      cleanup = false;
+    };
   }, []);
 
   useEffect(() => {
-    setIsShowNavbar(false);
+    let cleanUp = true;
+    if (cleanUp) setIsShowNavbar(false);
+    return () => {
+      cleanUp = false;
+    };
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -89,6 +134,26 @@ const TestQuestionShowLogic = () => {
     setEditorMode(getCodeEditorLanguageMode(e.value));
   };
 
+  useEffect(() => {
+    if (userInfo) {
+      if (join) {
+        if (userInfo.opponent_win_status === "win") {
+          navigate(`/vsmode/result/join/${name}/win`);
+        }
+        if (userInfo.opponent_win_status === "loss") {
+          navigate(`/vsmode/result/join/${name}/loss`);
+        }
+      } else {
+        if (userInfo.creater_win_status === "win") {
+          navigate(`/vsmode/result/creater/${name}/win`);
+        }
+        if (userInfo.creater_win_status === "loss") {
+          navigate(`/vsmode/result/creater/${name}/loss`);
+        }
+      }
+    }
+  }, [userInfo]);
+
   const agreeBtnClick = async () => {
     setIsOpenDialogBox(false);
 
@@ -99,16 +164,45 @@ const TestQuestionShowLogic = () => {
         await appRef
           .child(`/users_info/${auth.currentUser.uid}/all_certificate`)
           .push(name);
-        // send one certificate mail
+
+        const resultDetails = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: auth.currentUser.displayName,
+            email: auth.currentUser.email,
+            uid: auth.currentUser.uid,
+            certificate_name: name,
+            result: "pass",
+          }),
+        };
+
+        fetch("/sendCertificateResult", resultDetails);
       } else {
-        // you failed
-        // send one failed msg mail
+        const resultDetails = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: auth.currentUser.displayName,
+            email: auth.currentUser.email,
+            uid: auth.currentUser.uid,
+            certificate_name: name,
+            result: "pass",
+          }),
+        };
+
+        fetch("/sendCertificateResult", resultDetails);
       }
+
       navigate("/certificate-result-msg/" + name);
     } else if (type === "contest") {
       if (Object.keys(testQuestionData).length === submitedQuestions.length) {
         await appRef
-          .child(`/users_info/${auth.currentUser.uid}/all_certificate`)
+          .child(`/users_info/${auth.currentUser.uid}/contest_history`)
           .push({ name: name, status: "passed" });
 
         setSnackbarData("Congratulations..You are passed..!!", "succsess");
@@ -141,6 +235,10 @@ const TestQuestionShowLogic = () => {
     finalTestSubmissionHandler,
     allLanguagesName,
     getActiveLang,
+    type,
+    name,
+    userInfo,
+    join,
   };
 };
 

@@ -4,25 +4,28 @@ import { authContext } from "../../Context/AuthContext";
 import { loginContext } from "../../Context/LoginContext";
 import { auth } from "../../Firebase/Firebase";
 import { themeContext } from "../../Context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const HeaderLogic = () => {
-  const HomePageURL = [
-    { name: "Purpose", URL: "home" },
-    { name: "Dashboard", URL: "dashboard" },
-    { name: "Certify", URL: "certificate" },
-    { name: "Contest", URL: "contest" },
-    { name: "Vs Mode", URL: "vsmode" },
-  ];
-
-  const [drawer, setDrawer] = useState(false);
-
+  const { setValidUser, validUser, score } = useContext(authContext);
   const { setShowLogin, activeTab } = useContext(loginContext);
-  const { setValidUser } = useContext(authContext);
   const { isDarkMode, setIsDarkMode } = useContext(themeContext);
-
+  const [drawer, setDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  let HomePageURL = [];
+
+  if (validUser) {
+    HomePageURL = [
+      { name: "Dashboard", URL: "dashboard" },
+      { name: "Certify", URL: "certificate" },
+      { name: "Contest", URL: "contest" },
+      { name: "Vs Mode", URL: "vsmode" },
+    ];
+  } else {
+    HomePageURL = [{ }];
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,6 +44,15 @@ const HeaderLogic = () => {
   const logOut = () => {
     signOut(auth);
     setValidUser(false);
+    navigate("/");
+  };
+
+  const gotoPlayground = () => {
+    navigate("/playground");
+  };
+
+  const gotoProfile = () => {
+    navigate("/user/profile");
   };
 
   const toggleDrawer = (openDrawer) => (event) => {
@@ -71,6 +83,9 @@ const HeaderLogic = () => {
     toggleDarkMode,
     activeTab,
     anchorEl,
+    gotoPlayground,
+    gotoProfile,
+    score,
   };
 };
 

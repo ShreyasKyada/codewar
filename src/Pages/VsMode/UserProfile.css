@@ -3,8 +3,24 @@
   flex-direction: column;
 }
 
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.circular-progress-bar {
+  height: 35px;
+  width: 35px;
+  margin-right: 0.5rem;
+}
+
 .qid-heading {
   color: var(--text-color);
+  box-sizing: border-box;
+  padding-top: 0.2rem !important;
   margin-right: 1.8rem;
   align-self: flex-end;
   font-size: 0.9rem ;
@@ -65,7 +81,7 @@
 }
 
 .card {
-  padding: 1rem !important;
+  padding: 0.5rem 0.2rem 0.2rem 0.2rem !important;
 }
 
 .question-card {
@@ -87,4 +103,5 @@
   width: 6rem !important;
   margin: 0 auto !important;
   font-size: 0.6rem !important;
+  margin-bottom: 1rem !important;
 }

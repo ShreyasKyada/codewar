@@ -8,12 +8,16 @@ import Challenges from "../Pages/Challenges/Challenges";
 import QuestionShow from "../Pages/QuestionShow/QuestionShow";
 import Certificate from "../Pages/Certificate/Certificate";
 import Certificate_Step_1 from "../Pages/Certificate/Certificate_Step_1/Certificate_Step_1";
+import Certificate_step_3 from "../Pages/Certificate/Certificate_step_3/Certificate_step_3";
 import TestQuestionShow from "../Pages/TestQuestionShow/TestQuestionShow";
 import ContestList from "../Pages/Contest/ContestList";
 import Contest_Step_1 from "../Pages/Contest/Contest_Step_1/Contest_Step_1";
 import JoinVsMode from "../Pages/VsMode/JoinVsMode";
-import Certificate_step_3 from "../Pages/Certificate/Certificate_step_3/Certificate_step_3";
 import UserProfile from "../Pages/VsMode/UserProfile";
+import ResultPage from "../Pages/VsMode/ResultPage";
+import PlaygroundList from "../Pages/Playground/PlaygroundList/PlaygroundList";
+import Profile from "../Pages/Profile/Profile";
+import Playground from "../Pages/Playground/Playground";
 
 const Routing = () => {
   const { validUser } = useContext(authContext);
@@ -25,6 +29,7 @@ const Routing = () => {
         <>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="*" element={<Home />} />
         </>
       )}
       {validUser && (
@@ -32,7 +37,10 @@ const Routing = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/certificate" element={<Certificate />} />
-          <Route path="/certificate/:certificate_name" element={<Certificate_Step_1 />} />
+          <Route
+            path="/certificate/:certificate_name"
+            element={<Certificate_Step_1 />}
+          />
           <Route path="/challenges/:languageName" element={<Challenges />} />
           <Route
             path="/question-show/:languageName/:questionId"
@@ -46,6 +54,10 @@ const Routing = () => {
             element={<TestQuestionShow />}
           />
           <Route
+            path="/test-questions-list/:type/:name/:join"
+            element={<TestQuestionShow />}
+          />
+          <Route
             path="/certificate-result-msg/:name"
             element={<Certificate_step_3 />}
           />
@@ -53,6 +65,14 @@ const Routing = () => {
             path="/user-profiles/:languageName/:id"
             element={<UserProfile />}
           />
+          <Route path="/user-profiles/:qid" element={<UserProfile />} />
+          <Route
+            path="/vsmode/result/:who/:id/:mode"
+            element={<ResultPage />}
+          />
+          <Route path="/playground" element={<PlaygroundList />} />
+          <Route path="/playground/:id" element={<Playground />} />
+          <Route path="/user/profile" element={<Profile />} />
           <Route path="*" element={"Error"} />
         </>
       )}

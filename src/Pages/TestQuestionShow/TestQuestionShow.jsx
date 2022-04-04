@@ -1,3 +1,4 @@
+import React from "react";
 import { TabContext, TabPanel } from "@mui/lab";
 import {
   Button,
@@ -5,16 +6,15 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
   Tab,
   Tabs,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext, useEffect, useState } from "react";
 import "./TestQuestionShow.css";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { BsMoon } from "react-icons/bs";
+import { auth } from "../../Firebase/Firebase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -42,7 +42,13 @@ const TestQuestionShow = () => {
     agreeBtnClick,
     allLanguagesName,
     getActiveLang,
+    type,
+    name,
+    userInfo,
+    join,
   } = TestQuestionShowLogic();
+
+  document.title = `${type}  | CodeWar`
 
   let tabNumber = 1;
   let tabValue = 3;
@@ -70,50 +76,92 @@ const TestQuestionShow = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      {isShowTestNavbar && (
-        <div className="test-question-show-navbar">
-          <div className="left-navbar-container">
-            <div className="test-header-logo-codewar">
-              <Link to="/">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=f4888329-9045-4048-aff5-c6437090971d"
-                  alt="Logo"
-                />
-              </Link>
-            </div>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div className="right-navbar-container">
-            <p className="answered-tag">
-              Answered:{" "}
-              <span>
-                {submitedQuestions.length}/
-                {testQuestionData ? Object.keys(testQuestionData).length : ""}
-              </span>
-            </p>
-            <p className="navbar-time">
-              <AccessTimeIcon className="navbar-time-icon" /> 90 mins
-            </p>
-            <p className="navbar-theme-icon">
-              {isDarkMode ? (
-                <BsMoon
-                  className="navbar-theme-icon-moon"
-                  onClick={toggleDarkMode}
-                />
+      {isShowTestNavbar &&
+        (type === "vsmode" ? (
+          <div className="test-question-show-navbar">
+            <div className="left-navbar-container">
+              {join ? (
+                <div className="navbar-username-container vsmode-navbar-username-container">
+                  <PersonOutlineIcon className="navbar-person-icon" />
+                  <p className="navbar-username">{userInfo.opponent_name}</p>
+                </div>
               ) : (
-                <LightModeOutlinedIcon
-                  className="navbar-theme-icon"
-                  onClick={toggleDarkMode}
-                />
+                <div className="navbar-username-container vsmode-navbar-username-container">
+                  <PersonOutlineIcon className="navbar-person-icon" />
+                  <p className="navbar-username">{userInfo.creater_name}</p>
+                </div>
               )}
-            </p>
-            <div className="navbar-username-container">
-              <PersonOutlineIcon className="navbar-person-icon" />
-              <p className="navbar-username">shreyas</p>
+            </div>
+            <div className="middel-logo-container">
+              <div className="test-header-logo-codewar vsmode-navbar-logo">
+                <Link to="/">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/Logo.svg?alt=media&token=6d889c90-3c92-4f71-860a-f94ddf636275"
+                    alt="Logo"
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className="right-navbar-container vsmode-navbar-right-container">
+              {!join ? (
+                <div className="navbar-username-container">
+                  <PersonOutlineIcon className="navbar-person-icon" />
+                  <p className="navbar-username">{userInfo.opponent_name}</p>
+                </div>
+              ) : (
+                <div className="navbar-username-container">
+                  <PersonOutlineIcon className="navbar-person-icon" />
+                  <p className="navbar-username">{userInfo.creater_name}</p>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="test-question-show-navbar">
+            <div className="left-navbar-container">
+              <div className="test-header-logo-codewar">
+                <Link to="/">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/Logo.svg?alt=media&token=6d889c90-3c92-4f71-860a-f94ddf636275"
+                    alt="Logo"
+                  />
+                </Link>
+              </div>
+              <p>{name}</p>
+            </div>
+            <div className="right-navbar-container">
+              <p className="answered-tag">
+                Answered:{" "}
+                <span>
+                  {submitedQuestions.length}/
+                  {testQuestionData ? Object.keys(testQuestionData).length : ""}
+                </span>
+              </p>
+              <p className="navbar-time">
+                <AccessTimeIcon className="navbar-time-icon" /> 90 mins
+              </p>
+              <p className="navbar-theme-icon">
+                {isDarkMode ? (
+                  <BsMoon
+                    className="navbar-theme-icon-moon"
+                    onClick={toggleDarkMode}
+                  />
+                ) : (
+                  <LightModeOutlinedIcon
+                    className="navbar-theme-icon"
+                    onClick={toggleDarkMode}
+                  />
+                )}
+              </p>
+              <div className="navbar-username-container">
+                <PersonOutlineIcon className="navbar-person-icon" />
+                <p className="navbar-username">
+                  {auth.currentUser.displayName}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       <Box
         sx={{
           flexGrow: 1,
@@ -126,7 +174,11 @@ const TestQuestionShow = () => {
             orientation="vertical"
             value={value}
             onChange={handleChange}
-            className="test-question-show-tabs"
+            className={
+              type === "vsmode"
+                ? "test-question-show-tabs-hidden"
+                : "test-question-show-tabs"
+            }
           >
             {!isShowTestNavbar && (
               <Tab
@@ -134,7 +186,7 @@ const TestQuestionShow = () => {
                 className="time-left-tab"
                 label={
                   <div className="test-hide-left-side-navbar">
-                    <p className="navbar-hide-time">190m left</p>
+                    <p className="navbar-hide-time">90m left</p>
                   </div>
                 }
               />
@@ -159,22 +211,27 @@ const TestQuestionShow = () => {
           </Tabs>
 
           {/* Tab panels */}
+
           <TabPanel
             value="1"
             className="test-question-show-tabpanel test-all-questions"
           >
-            <TestQuestionList
-              testQuestionData={testQuestionData}
-              listTabNavigation={listTabNavigation}
-              submitedQuestions={submitedQuestions}
-            />
-            <Button
-              className="test-btn final-test-submit-btn"
-              variant="contained"
-              onClick={finalTestSubmissionHandler}
-            >
-              Submit Test
-            </Button>
+            {type !== "vsmode" && (
+              <>
+                <TestQuestionList
+                  testQuestionData={testQuestionData}
+                  listTabNavigation={listTabNavigation}
+                  submitedQuestions={submitedQuestions}
+                />
+                <Button
+                  className="test-btn final-test-submit-btn"
+                  variant="contained"
+                  onClick={finalTestSubmissionHandler}
+                >
+                  Submit Test
+                </Button>
+              </>
+            )}
           </TabPanel>
           <TabPanel value="2" className="test-question-show-tabpanel">
             Item Two

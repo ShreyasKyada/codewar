@@ -6,7 +6,8 @@ const LoginLogic = () => {
   //Hooks
   const [tabValue, setTabValue] = useState("0");
   const [height, setHeight] = useState("120%");
-  const { showLogin, setShowLogin } = useContext(loginContext);
+  const { showLogin, setShowLogin, setIsLoadingState, isLoadingState } =
+    useContext(loginContext);
   const [signUpData, setSignUpData] = useState({
     username: "",
     email: "",
@@ -32,8 +33,6 @@ const LoginLogic = () => {
       setHeight("100%");
     }
   }, [showLogin]);
-
-  
 
   const signUpBtnFun = async () => {
     const { username, email, password } = signUpData;
@@ -66,13 +65,15 @@ const LoginLogic = () => {
             and then codewar_backend will send one verification mail into given
             mail id.
           */
+          setIsLoadingState(true);
           const catchErr = await createAnAccount(signUpData);
+          setIsLoadingState(false);
 
           if (catchErr !== "none") {
             setShowSnackbar(true);
             setErrorText(catchErr);
           } else {
-            console.log("now you are ready to loged in :)");
+            setShowLogin(false);
           }
         }
       }
@@ -88,8 +89,9 @@ const LoginLogic = () => {
   };
 
   const loginFun = () => {
+    setIsLoadingState(true);
     let error = login(loginData);
-
+    setIsLoadingState(false);
     error.then((res) => {
       if (res === "none") {
         setShowLogin(false);
@@ -117,6 +119,7 @@ const LoginLogic = () => {
     hideSnackbar,
     loginFun,
     getLoginData,
+    isLoadingState
   };
 };
 

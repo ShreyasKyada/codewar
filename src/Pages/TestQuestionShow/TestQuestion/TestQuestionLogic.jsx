@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { codeRuner } from "../../../Helper/CodeRuner";
-import appRef from "../../../Firebase/Firebase";
+import appRef, { auth } from "../../../Firebase/Firebase";
+import { useParams } from "react-router-dom";
 
 const TestQuestionLogic = (
   activeLanguage,
@@ -17,21 +18,15 @@ const TestQuestionLogic = (
       error: "",
     },
   ]);
-  const [activeTheme, setActiveTheme] = useState("Chaos");
   const [isSubmitState, setIsSubmitState] = useState(false);
   const [isCompilerLoadingState, setIsCompilerLoadingState] = useState(true);
-  const [tabContextData, setTabContextData] = useState([
-    // {
-    //   mode: ""
-    //   input: "",
-    //   output: "",
-    //   expectedOutput: "",
-    // },
-  ]);
+  const [tabContextData, setTabContextData] = useState([]);
   const [customInput, setCustomInput] = useState("");
   const [customOutput, setCustomOutput] = useState("");
   const [codeEditorData, setCodeEditorData] = useState("");
   const [isShowTextarea, setIsShowTextarea] = useState(false);
+  const { type, name, join } = useParams();
+  const activeTheme = "Chaos";
 
   useEffect(() => {
     setCodeEditorData(testQuestion.default_code);
@@ -167,7 +162,56 @@ const TestQuestionLogic = (
       }
     }
 
-    if (flag && submitedQuestions.indexOf(id) === -1) {
+    if (flag && type === "vsmode") {
+      appRef
+        .child(`/vs_mode/${name}`)
+        .get()
+        .then(async (snapshot) => {
+          const snap = snapshot.val();
+          if (join) {
+            // opponent uid
+            await appRef
+              .child(`/users_info/${snap.opponent_uid}/vs_mode_history`)
+              .push({
+                winning_status: "win",
+                opponent_userName: snap.creater_name,
+                question_path: snap.path,
+                question_name: testQuestion.question_heading,
+              });
+            await appRef.child(`/users_info/${name}/vs_mode_history`).push({
+              winning_status: "loss",
+              opponent_userName: snap.opponent_name,
+              question_path: snap.path,
+              question_name: testQuestion.question_heading,
+            });
+            await appRef.child(`/vs_mode/${name}`).set({
+              ...snap,
+              opponent_win_status: "win",
+              creater_win_status: "loss",
+            });
+          } else {
+            await appRef
+              .child(`/users_info/${snap.opponent_uid}/vs_mode_history`)
+              .push({
+                winning_status: "loss",
+                opponent_userName: snap.creater_name,
+                question_path: snap.path,
+                question_name: testQuestion.question_heading,
+              });
+            await appRef.child(`/users_info/${name}/vs_mode_history`).push({
+              winning_status: "win",
+              opponent_userName: snap.opponent_name,
+              question_path: snap.path,
+              question_name: testQuestion.question_heading,
+            });
+            await appRef.child(`/vs_mode/${name}`).set({
+              ...snap,
+              creater_win_status: "win",
+              opponent_win_status: "loss",
+            });
+          }
+        });
+    } else if (flag && submitedQuestions.indexOf(id) === -1) {
       let tempArr = submitedQuestions;
       tempArr.push(id);
       setSubmitedQuestions(Object.values(tempArr));

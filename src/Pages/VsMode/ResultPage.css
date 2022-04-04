@@ -1,0 +1,38 @@
+.result-container {
+  height: calc(100vh - 3rem);
+  width: 100%;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-card p,
+.result-card h2 {
+  text-align: center;
+}
+
+.green {
+    color: #32c766;
+}
+
+.red {
+    color: rgb(255, 72, 72);
+}
+
+.result-card p {
+    margin: 0.2rem 0;
+    font-size: 0.75rem;
+}
+
+.sad-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sad-img img {
+  height: 150px;
+  width: 150px;
+  /* display: inline; */
+}

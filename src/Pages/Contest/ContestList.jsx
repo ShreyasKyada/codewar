@@ -7,9 +7,16 @@ import { loginContext } from "../../Context/LoginContext";
 import SubHeader from "../../Components/SubHeader/SubHeader";
 
 const ContestList = () => {
-  const { activeContestList, archiveContestList, isSkeletonLoading } =
-    ContestListLogic();
+  const {
+    activeContestList,
+    archiveContestList,
+    isSkeletonLoading,
+    allFilterName,
+    contestCheckboxChangeHandler,
+  } = ContestListLogic();
   const { setActiveTab, setIsShowNavbar } = useContext(loginContext);
+
+  document.title = "Contest | CodeWar";
 
   useEffect(() => {
     setActiveTab("Contest");
@@ -62,19 +69,30 @@ const ContestList = () => {
             {activeContestList ? (
               Object.keys(activeContestList)
                 .map((id) => {
-                  return <ContestCard key={id} data={activeContestList[id]}/>;
+                  return (
+                    <ContestCard
+                      key={id}
+                      data={activeContestList[id]}
+                      id={id}
+                    />
+                  );
                 })
                 .reverse()
             ) : (
               <h5 className="error-msg">No active contest.</h5>
-
             )}
 
             <h1 className="contest-heading">Archived Contest</h1>
             {archiveContestList ? (
               Object.keys(archiveContestList)
                 .map((id) => {
-                  return <ContestCard key={id} data={activeContestList[id]} />;
+                  return (
+                    <ContestCard
+                      key={id}
+                      data={archiveContestList[id]}
+                      id={id}
+                    />
+                  );
                 })
                 .reverse()
             ) : (
@@ -85,20 +103,21 @@ const ContestList = () => {
         <div className="filter-container">
           <div className="skill-container filters">
             <p className="skill-lable">FILTER</p>
-            <div>
-              <FormControlLabel
-                control={<Checkbox className="check-box" />}
-                label="C++"
-                className="check-box"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={<Checkbox className="check-box" />}
-                label="Java"
-                className="check-box"
-              />
-            </div>
+            {allFilterName &&
+              allFilterName.map((val, index) => {
+                return (
+                  <div key={index}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox className="check-box" name={`${val}`} />
+                      }
+                      label={`${val}`}
+                      className="check-box"
+                      onChange={contestCheckboxChangeHandler}
+                    />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>

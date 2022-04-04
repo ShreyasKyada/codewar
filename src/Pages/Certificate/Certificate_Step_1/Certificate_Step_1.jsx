@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Certificate_Step_1.css";
 import { RiMedal2Line, RiErrorWarningLine } from "react-icons/ri";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { FaPlay } from "react-icons/fa";
 import { Button, TextField } from "@mui/material";
 import { TabPanel, TabList, TabContext } from "@mui/lab";
@@ -9,6 +8,7 @@ import { Tab } from "@mui/material";
 import Certificate_Step_2 from "../Certificate_Step_2/Certificate_Step_2";
 import { loginContext } from "../../../Context/LoginContext";
 import { useParams } from "react-router-dom";
+// import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const Certificate_Step_1 = () => {
   const [navigationTabValue, setNavigationTabValue] = useState("3");
@@ -18,6 +18,8 @@ const Certificate_Step_1 = () => {
   const navigationTabs = (event, newValue) => {
     setNavigationTabValue(newValue);
   };
+
+  document.title = `${certificate_name} certificate | CodeWar`;
 
   useEffect(() => {
     setActiveTab("Certify");
@@ -33,7 +35,7 @@ const Certificate_Step_1 = () => {
               <div className="test-header-logo">
                 <div className="folded-corner"></div>
                 <div className="certificate-container">
-                  <div className="certi-name">css</div>
+                  <div className="certi-name">{certificate_name.split(" ")[0]}</div>
                 </div>
                 <RiMedal2Line className="medal-icons" />
               </div>
@@ -41,14 +43,14 @@ const Certificate_Step_1 = () => {
             <div className="certi-content">
               <p className="certi-heading">
                 {" "}
-                javascript (Basic) Skills Certification Test
+                {certificate_name} Skills Certification Test
               </p>
               <div className="heading-bottom-container">
-                <div className="clock-icons">
+                {/* <div className="clock-icons">
                   <AccessTimeIcon />
                   <p>90 min</p>
-                </div>
-                <p className="certificate-sub-heading">Javascript</p>
+                </div> */}
+                <p className="step-1-certificate-sub-heading">{certificate_name.split(" ")[0]}</p>
               </div>
             </div>
           </div>

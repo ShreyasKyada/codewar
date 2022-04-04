@@ -12,6 +12,10 @@
   width: 3rem;
 }
 
+.test-question-show-tabs-hidden {
+  width: 0;
+}
+
 .test-question-show-tab {
   font-size: 0.6rem !important;
   padding: 0.5rem 0 !important;
@@ -20,7 +24,7 @@
 .test-question-show-tabpanel {
   background-color: var(--background-color);
   width: 100%;
-  min-height: calc(100vh - 3rem);
+  min-height: calc(100vh - 3rem) !important;
   color: var(--text-color);
 }
 
@@ -41,6 +45,7 @@
 .question-panel {
   padding: 0 !important;
   box-sizing: border-box !important;
+  min-height: 100vh !important;
 }
 
 .test-all-questions {
@@ -68,6 +73,13 @@
   user-select: none;
 }
 
+.middel-logo-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .test-hide-left-side-navbar {
   display: flex;
   align-items: center;
@@ -81,6 +93,7 @@
   height: 2rem;
   width: 5rem;
   background-color: transparent;
+  margin: 0 0.9rem;
 }
 
 .test-header-logo-codewar img {
@@ -97,6 +110,10 @@
   font-size: 0.53rem;
   flex: 1;
   justify-content: flex-end;
+}
+
+.vsmode-navbar-right-container {
+  flex: 0;
 }
 
 .navbar-theme-icon,
@@ -133,6 +150,10 @@
   align-items: center;
   margin: 0 0.5rem;
   margin-right: 1.2rem;
+}
+
+.vsmode-navbar-username-container {
+  margin-left: 1.2rem !important;
 }
 
 .navbar-person-icon {

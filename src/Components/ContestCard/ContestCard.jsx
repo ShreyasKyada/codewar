@@ -22,14 +22,23 @@ const ContestCard = ({ data, id }) => {
             <Button
               variant="contained"
               component={Link}
-              to={`/Contest/${data.contest_name}`}
+              to={`/Contest/${id}`}
               className="contest-btn"
             >
               Sign Up
             </Button>
           </div>
         </div>
-        <Collapse in={isCollapse} timeout={700} unmountOnExit>
+        <div className="date-container" onClick={toggleCollapseState}>
+          <p>Start at: {data.starts_at}</p>
+          <p>End at: {data.ends_at}</p>
+        </div>
+        <Collapse
+          in={isCollapse}
+          timeout={700}
+          unmountOnExit
+          sx={{ marginTop: "1rem" }}
+        >
           <div className="contest-collapse-container">
             <div className="contest-subtitle">Description</div>
             <div className="contest-description">{data.description}</div>

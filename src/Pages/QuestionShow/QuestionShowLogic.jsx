@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { authContext } from "../../Context/AuthContext";
+import { loginContext } from "../../Context/LoginContext";
 import appRef, { auth } from "../../Firebase/Firebase";
 import {
   getCodeEditorLanguageMode,
@@ -30,25 +33,28 @@ const QuestionShowLogic = () => {
   const [isCompilerLoadingState, setIsCompilerLoadingState] = useState(true);
   const [editorMode, setEditorMode] = useState("");
   const [isSubmitState, setIsSubmitState] = useState(false);
-  const [tabContextData, setTabContextData] = useState([
-    // {
-    //   mode: ""
-    //   input: "",
-    //   output: "",
-    //   expectedOutput: "",
-    // },
-  ]);
+  const [tabContextData, setTabContextData] = useState([]);
   const [customInput, setCustomInput] = useState("");
   const [customOutput, setCustomOutput] = useState("");
+  const [allLanguagesName, setAllLanguagesName] = useState([]);
+  const { score } = useContext(authContext);
+  const { setSnackbarData } = useContext(loginContext);
+  const smallScreen = useMediaQuery("(max-width:600px)");
+
+  useEffect(() => {
+    if (smallScreen) {
+      setSnackbarData(
+        "We recommend to open in desktop for the best experience.",
+        "error"
+      );
+    }
+  }, [smallScreen]);
 
   // Code editor here
   useEffect(() => {
     appRef
       .child(`/languages_questions/${languageName}/${questionId}`)
       .on("value", (res) => {
-        let questionContainer =
-          document.getElementsByClassName("question-container")[0];
-        questionContainer.innerHTML = res.val().question_detail_HTML;
         setQuestionData(res.val());
       });
   }, []);
@@ -56,8 +62,25 @@ const QuestionShowLogic = () => {
   // set default languages and themes
   useEffect(() => {
     setSupportedThemes(CodeEditorSupportedThemes());
-    setActiveLanguage(languageName);
-    setEditorMode(getCodeEditorLanguageMode(languageName));
+    if (languageName === "Data structures") {
+      setAllLanguagesName([
+        "C",
+        "C++",
+        "Java",
+        "Php",
+        "Javascript",
+        "Perl",
+        "Python",
+        "Ruby",
+        "C#",
+        "Swift",
+      ]);
+      setActiveLanguage("C");
+      setEditorMode(getCodeEditorLanguageMode("C"));
+    } else {
+      setActiveLanguage(languageName);
+      setEditorMode(getCodeEditorLanguageMode(languageName));
+    }
   }, []);
 
   useEffect(() => {
@@ -122,12 +145,14 @@ const QuestionShowLogic = () => {
     scrollDiv(document.getElementById("scroll-div").offsetTop - 100);
     appRef
       .child(
-        `users_info/${auth.currentUser.uid}/solved_question/${languageName}/${questionId}/`
+        `users_info/${auth.currentUser.uid}/solved_question/${questionId}/`
       )
       .set({
         id: questionId,
         difficulty_level: questionData.difficulty_level,
         status: "run",
+        question_heading: questionData.question_heading,
+        language_name: languageName,
       });
 
     // runCode
@@ -150,7 +175,7 @@ const QuestionShowLogic = () => {
       ) {
         const executionData = await codeRuner(
           questionShowCodeEditor,
-          languageName,
+          activeLanguage,
           questionData.test_cases.sample_test_case[i].input,
           questionData.test_cases.sample_test_case[i].output
         );
@@ -188,7 +213,7 @@ const QuestionShowLogic = () => {
     for (let i = 0; i < questionData.test_cases.sample_test_case.length; i++) {
       const executionData = await codeRuner(
         questionShowCodeEditor,
-        languageName,
+        activeLanguage,
         questionData.test_cases.sample_test_case[i].input,
         questionData.test_cases.sample_test_case[i].output
       );
@@ -238,17 +263,29 @@ const QuestionShowLogic = () => {
     if (flag) {
       await appRef
         .child(
-          `users_info/${auth.currentUser.uid}/solved_question/${languageName}/${questionId}`
+          `users_info/${auth.currentUser.uid}/solved_question/${questionId}`
         )
         .set({
           id: questionId,
           difficulty_level: questionData.difficulty_level,
           status: "submited",
+          question_heading: questionData.question_heading,
+          language_name: languageName,
         });
+
+      await appRef
+        .child(`users_info/${auth.currentUser.uid}/score`)
+        .set(score + parseInt(questionData.max_score));
     }
 
     setIsCompilerLoadingState(false);
     setTabContextData(Object.values(tempTabContextData));
+  };
+
+  const getActiveLang = (e) => {
+    
+    setActiveLanguage(e.value);
+    setEditorMode(getCodeEditorLanguageMode(e.value));
   };
 
   return {
@@ -276,6 +313,8 @@ const QuestionShowLogic = () => {
     customOutput,
     submitCode,
     isSubmitState,
+    allLanguagesName,
+    getActiveLang,
   };
 };
 

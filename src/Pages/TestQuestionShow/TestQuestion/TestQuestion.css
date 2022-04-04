@@ -109,6 +109,7 @@
 
 .test-question-code-editor {
   height: calc(100vh - 4rem) !important;
+  width: 100% !important;
 }
 
 .test-code-submit-btn-container {

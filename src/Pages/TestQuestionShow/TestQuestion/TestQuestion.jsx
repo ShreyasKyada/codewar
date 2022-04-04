@@ -29,16 +29,17 @@ import "ace-builds/src-noconflict/mode-javascript";
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import OutputTabContext from "../../../Helper/OutputTabContext";
 import TestQuestionLogic from "./TestQuestionLogic";
+import { Editor } from "@tinymce/tinymce-react";
 
 const TestQuestion = ({
   testQuestion,
   activeLanguage,
   editorMode,
-  languageName,
   submitedQuestions,
   setSubmitedQuestions,
   id,
-  allLanguagesName,getActiveLang
+  allLanguagesName,
+  getActiveLang,
 }) => {
   const { isDarkMode, setIsDarkMode } = useContext(themeContext);
 
@@ -74,11 +75,7 @@ const TestQuestion = ({
     else setIsDarkMode(true);
   };
 
-  useEffect(() => {
-    document.getElementsByClassName(
-      "test-question-detail-container"
-    )[0].innerHTML = testQuestion.question_detail_HTML;
-  }, []);
+  document.title = `${testQuestion.question_heading} | CodeWar`;
 
   return (
     <div className="test-question">
@@ -88,7 +85,49 @@ const TestQuestion = ({
         maxWidth={"55%"}
         enable={{ right: true }}
       >
-        <div className="test-question-detail-container"></div>
+        <div className="test-question-detail-container">
+          <Editor
+            value={testQuestion.question_detail_HTML}
+            className="text-editor"
+            selector="div"
+            init={{
+              setup: function (editor) {
+                editor.on("init", () => {
+                  const head = document.getElementsByClassName(
+                    "tox-edit-area__iframe"
+                  )[0].contentWindow.document.head;
+
+                  head.insertAdjacentHTML(
+                    "beforeend",
+                    `<style>::-webkit-scrollbar {
+                      
+                      width: 7.5px;
+                      background-color: #1e1e1e;
+                      border-radius: 10px;
+                    }
+                    
+                    ::-webkit-scrollbar-thumb {
+                      background-color: rgb(99, 99, 99);
+                      border-radius: 10px;
+                    }
+                    </style>`
+                  );
+
+                  document
+                    .getElementsByClassName("tox-edit-area__iframe")[0]
+                    .contentWindow.document.body.setAttribute(
+                      "style",
+                      "color: white !important;"
+                    );
+                });
+              },
+              readonly: true,
+              menubar: false,
+
+              plugins: ["autoresize"],
+            }}
+          />
+        </div>
         <div className="horizontal-line">
           <div className="indicator-icon-container">
             <DragIndicatorIcon className="drag-indicator-icon" />
@@ -140,23 +179,28 @@ const TestQuestion = ({
           </div>
         </div>
         <div className="test-right-bottom-container">
-          <AceEditor
-            mode={`${editorMode}`}
-            theme="chaos"
-            onChange={getCodeEditorData}
-            width="100%"
-            editorProps={{ $blockScrolling: true }}
-            className="test-question-code-editor"
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              showLineNumbers: true,
-              showPrintMargin: false,
-              tabSize: 2,
-              fontSize: 18,
-            }}
-            value={codeEditorData ? codeEditorData : ""}
-          />
+          {editorMode && (
+            <AceEditor
+              mode={`${editorMode}`}
+              theme="chaos"
+              onChange={getCodeEditorData}
+              Width="100%"
+              editorProps={{ $blockScrolling: false }}
+              className="test-question-code-editor"
+              setOptions={{
+                wrapBehavioursEnabled: true,
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true,
+                autoScrollEditorIntoView: true,
+                showLineNumbers: true,
+                showPrintMargin: false,
+                tabSize: 2,
+                fontSize: 18,
+                wrap: 1,
+              }}
+              value={codeEditorData ? codeEditorData : ""}
+            />
+          )}
         </div>
         <div className="test-code-submit-btn-container">
           <div className="test-against-container">

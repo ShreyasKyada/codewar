@@ -1,0 +1,139 @@
+.playground-container {
+  height: 90vh;
+  color: var(--text-color);
+  display: flex;
+}
+
+.playground-left-container {
+  width: 56%;
+  height: 100%;
+  border-right: 2px solid var(--glass-border-color);
+}
+
+.playground-left-header {
+  display: flex;
+  padding: 0.48rem 0.6rem;
+  border-bottom: 2px solid var(--glass-border-color);
+}
+
+.playground-name {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+}
+
+.playground-name-input {
+  background-color: var(--mode);
+  padding: 8px 8px;
+  border: 2px solid var(--glass-border-color);
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.playground-name-input:focus {
+  outline: none;
+  border: 2px solid var(--hover-color);
+}
+
+.playground-edit-icon {
+  font-size: 22px !important;
+  position: absolute !important;
+  right: 13px;
+}
+
+.playground-theme-language-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+}
+
+.playground-languages-dropdown,
+.playground-theme-dropdown {
+  width: 6rem !important;
+}
+
+.playground-languages-dropdown {
+  margin-right: 0.5rem;
+}
+
+.theme-dropdown {
+  margin: 0 0.3rem;
+}
+
+.playground-save-btn {
+  font-size: 0.55rem !important;
+  text-transform: none !important;
+  padding: 3px 15px !important;
+}
+
+.playground-code-editor {
+  border-bottom: 2px solid var(--glass-border-color);
+}
+
+.playground-run-btn {
+  float: right !important;
+  margin-top: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+.playground-right-container {
+  width: 44%;
+}
+
+.playground-stdout {
+  height: 60%;
+}
+
+.playground-stdout-heading {
+  padding: 0.6rem 0.6rem;
+  border-bottom: 2px solid var(--glass-border-color);
+}
+
+.playground-stdout-heading-output {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.playground-stdin {
+  border-top: 2px solid var(--glass-border-color);
+  height: 31%;
+}
+
+.playground-stdin-heading-stdin {
+  font-size: 0.55rem;
+  padding: 0 0.5rem;
+}
+
+.playground-loading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playground-loading p {
+  margin-left: 0.5rem;
+}
+
+.playground-stdin-textarea {
+  background-color: var(--sub-header-color);
+  height: 100%;
+  width: 99%;
+  resize: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 18px;
+}
+
+.playground-stdin-textarea:focus {
+  border: none;
+  outline: none;
+}
+
+  .playground-output-container {
+    overflow-x: scroll;
+  }

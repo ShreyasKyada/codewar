@@ -89,7 +89,11 @@ const Header = () => {
           </Dialog>
 
           {!mobileView ? (
-            <MobileNavbar validUser={validUser} />
+            <MobileNavbar
+              validUser={validUser}
+              isDarkMode={isDarkMode}
+              isLoadingState={isLoadingState}
+            />
           ) : (
             <DesktopNavbar
               validUser={validUser}
@@ -99,7 +103,6 @@ const Header = () => {
           )}
         </>
       )}
-      {/* <LinearProgress /> */}
     </>
   );
 };

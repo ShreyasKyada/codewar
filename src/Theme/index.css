@@ -36,7 +36,7 @@ body.dark {
   --text-color: white;
   --primary: #f44336;
   --hover-color: #03cffc;
-  --transparent-color: rgba(30, 30, 30, 0.6);
+  --transparent-color: #1e1e1e99;
   --glass-border-color: rgba(255, 255, 255, 0.125);
   --box-shadow: rgba(85, 85, 85, 0.548);
   --border-color: white;

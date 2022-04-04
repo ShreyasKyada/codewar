@@ -17,6 +17,8 @@ const Dashboard = () => {
   } = DashboardLogic();
   const { setActiveTab, setIsShowNavbar } = useContext(loginContext);
 
+  document.title = "Dashboard | CodeWar";
+
   useEffect(() => {
     setActiveTab("Dashboard");
     setIsShowNavbar(true);
@@ -33,7 +35,7 @@ const Dashboard = () => {
         }}
       />
       <div className="dashboard-container">
-        <p className="certificate-heading">Get Your Skills Certified</p>
+        <p className="dashboard-certificate-heading">Get Your Skills Certified</p>
         <div className="certification-card-container">
           {isCertificateSkeleton ? (
             <>

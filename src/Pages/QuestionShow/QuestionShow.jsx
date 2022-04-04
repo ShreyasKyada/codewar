@@ -2,17 +2,11 @@ import React from "react";
 import "./QuestionShow.css";
 import AceEditor from "react-ace";
 import { BiReset } from "react-icons/bi";
-import {
-  Button,
-  Checkbox,
-  CircularProgress,
-  FormControlLabel,
-  Tab,
-  Tabs,
-} from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import QuestionShowLogic from "./QuestionShowLogic";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { Editor } from "@tinymce/tinymce-react";
 
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/actionscript";
@@ -39,6 +33,7 @@ import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/theme-eclipse";
 import "ace-builds/src-noconflict/theme-dreamweaver";
 import "ace-builds/src-noconflict/theme-dawn";
+
 import SubHeader from "../../Components/SubHeader/SubHeader";
 import OutputTabContext from "../../Helper/OutputTabContext";
 
@@ -68,7 +63,11 @@ const QuestionShow = () => {
     customOutput,
     submitCode,
     isSubmitState,
+    allLanguagesName,
+    getActiveLang,
   } = QuestionShowLogic();
+
+  document.title = `${questionData.question_heading} | CodeWar`;
 
   return (
     <>
@@ -81,7 +80,7 @@ const QuestionShow = () => {
             },
             languageName: {
               name: languageName,
-              link: `/dashboard/${languageName}`,
+              link: `/challenges/${languageName}`,
             },
             questionName: {
               name: `${questionData.question_heading}`,
@@ -93,7 +92,49 @@ const QuestionShow = () => {
       <div className="question-show-container">
         <div className="question-show-sub-container">
           <div className="question-show-left-side-container">
-            <div className="question-container">{/* {questionData} */}</div>
+            <div className="question-container">
+              <Editor
+                value={questionData.question_detail_HTML}
+                className="text-editor"
+                selector="div"
+                init={{
+                  setup: function (editor) {
+                    editor.on("init", () => {
+                      const head = document.getElementsByClassName(
+                        "tox-edit-area__iframe"
+                      )[0].contentWindow.document.head;
+
+                      head.insertAdjacentHTML(
+                        "beforeend",
+                        `<style>::-webkit-scrollbar {
+                      
+                      width: 7.5px;
+                      background-color: #1e1e1e;
+                      border-radius: 10px;
+                    }
+                    
+                    ::-webkit-scrollbar-thumb {
+                      background-color: rgb(99, 99, 99);
+                      border-radius: 10px;
+                    }
+                    </style>`
+                      );
+
+                      document
+                        .getElementsByClassName("tox-edit-area__iframe")[0]
+                        .contentWindow.document.body.setAttribute(
+                          "style",
+                          "color: white !important;"
+                        );
+                    });
+                  },
+                  readonly: true,
+                  menubar: false,
+
+                  plugins: ["autoresize"],
+                }}
+              />
+            </div>
 
             <div className="question-code-editor">
               <section className="code-editor-header">
@@ -109,35 +150,47 @@ const QuestionShow = () => {
                 </div>
                 <div className="languages-container">
                   <p>Language</p>
-                  <Dropdown
-                    options={[activeLanguage]}
-                    value={activeLanguage}
-                    className="language-dropdown"
-                    controlClassName="question-control-class"
-                  />
+                  {allLanguagesName.length > 0 ? (
+                    <Dropdown
+                      options={allLanguagesName}
+                      value={activeLanguage}
+                      onChange={getActiveLang}
+                      className="language-dropdown"
+                      controlClassName="question-control-class"
+                    />
+                  ) : (
+                    <Dropdown
+                      options={[activeLanguage]}
+                      value={activeLanguage}
+                      className="language-dropdown"
+                      controlClassName="question-control-class"
+                    />
+                  )}
                 </div>
 
                 <div className="question-show-icon-container">
                   <BiReset onClick={resetDefaultCode} />
                 </div>
               </section>
-              <AceEditor
-                mode={`${editorMode}`}
-                theme={activeTheme.toLowerCase().replace(" ", "_")}
-                onChange={getCodeEditorData}
-                width="100%"
-                className="question-show-editor"
-                setOptions={{
-                  enableBasicAutocompletion: true,
-                  enableLiveAutocompletion: true,
-                  showLineNumbers: true,
-                  showPrintMargin: false,
-                  tabSize: 2,
-                  fontSize: 18,
-                  wrap: true,
-                }}
-                value={questionShowCodeEditor ? questionShowCodeEditor : ""}
-              />
+              {editorMode && (
+                <AceEditor
+                  mode={`${editorMode}`}
+                  theme={activeTheme.toLowerCase().replace(" ", "_")}
+                  onChange={getCodeEditorData}
+                  width="100%"
+                  className="question-show-editor"
+                  setOptions={{
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true,
+                    showLineNumbers: true,
+                    showPrintMargin: false,
+                    tabSize: 2,
+                    fontSize: 18,
+                    wrap: true,
+                  }}
+                  value={questionShowCodeEditor ? questionShowCodeEditor : ""}
+                />
+              )}
             </div>
             <div className="question-show-bottom-container">
               <div className="question-show-button-container">

@@ -1,12 +1,136 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import "./Home.css";
+import {
+  BsFillQuestionCircleFill,
+  BsFillQuestionSquareFill,
+} from "react-icons/bs";
+import { FaUsers, FaUserFriends } from "react-icons/fa";
+import { GiTrophyCup, GiTrophiesShelf } from "react-icons/gi";
+import { MdDeveloperMode } from "react-icons/md";
+import CountUp from "react-countup";
+import home from "../../Assets/home.svg";
+import { loginContext } from "../../Context/LoginContext";
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Home</h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde assumenda pariatur placeat, iste tempore natus, ad mollitia, in neque fuga repudiandae doloremque fugit quasi voluptatum eligendi necessitatibus impedit similique! Ea voluptatem libero vero eligendi deserunt, quas provident explicabo veniam ipsam dolor officia at suscipit sapiente id ratione! Natus laudantium provident eligendi quis odit. Enim sequi magnam dolor animi quod doloribus, iure nesciunt iste incidunt nemo voluptatem praesentium, voluptate tempore debitis laboriosam atque distinctio reprehenderit harum possimus porro dicta? Iusto tenetur ipsum quibusdam! Dolor totam facere ut quas non veritatis ipsum ab animi. Provident iusto, dolor numquam nemo architecto cumque, voluptatem repellendus eius impedit, iste aut consequuntur laborum! Fugit at doloribus nulla. Excepturi asperiores, deleniti, harum dignissimos cumque laudantium reprehenderit non reiciendis nam adipisci numquam, qui voluptatum accusamus architecto deserunt eum alias error veritatis odio. Officiis consequuntur error ex rem sed pariatur, magni odit dolor harum debitis molestias maiores quaerat doloribus ipsa beatae magnam id eum ratione earum. Doloribus similique nostrum a harum quod. A quidem esse, quam libero impedit vel consectetur perferendis voluptates nisi nemo iusto ex quos aliquid quo voluptas doloribus? Ex aliquid, similique, nihil, cumque iusto sint voluptatibus autem est vitae quos qui cupiditate minima enim. Nemo tempore, vitae dolore aspernatur minima est, porro temporibus explicabo, repellat voluptatibus esse odit modi eum tenetur ratione dolores. Id praesentium doloribus molestias, nobis, numquam ullam exercitationem deleniti cum rerum soluta accusantium eaque a nam distinctio impedit itaque consequuntur odio ipsam sunt eius. Molestias consequatur recusandae suscipit accusamus temporibus eaque corporis nobis dolore nemo tenetur repellendus aperiam animi vero ipsum non impedit dignissimos quo sed aliquid, facere at cupiditate sit odit. Nihil, nobis obcaecati? Itaque perferendis dolorum incidunt consequuntur, repellat esse possimus accusamus aliquam laboriosam? Neque amet dolores obcaecati dignissimos eius necessitatibus error debitis dicta sit perspiciatis ratione inventore expedita soluta animi quam consequuntur quibusdam, explicabo numquam quis excepturi exercitationem nam! Itaque quo, quibusdam vitae suscipit pariatur nobis praesentium minus esse beatae deserunt saepe sint porro dolorem excepturi quod magni quaerat quidem delectus nihil id! Adipisci modi quae corporis. Illo error maxime qui rem vitae aperiam molestias molestiae porro. Expedita vel neque nisi illum quis dolore nobis beatae repellat necessitatibus excepturi id eaque veritatis numquam incidunt quasi omnis deserunt fugit, corporis quae ex? Delectus officiis omnis temporibus consectetur labore nostrum, numquam quaerat dolore aut! Commodi quis distinctio alias doloremque tempora earum dolorum hic voluptate dolores reiciendis laboriosam architecto velit maxime, aut doloribus accusamus cumque porro. Odit explicabo ipsum ab repudiandae reiciendis repellendus quasi iure, quia, culpa itaque quae placeat! Provident, dolores vitae earum sunt eum facere obcaecati atque laborum eaque? Assumenda nemo tenetur quae vel quo provident recusandae consectetur quam sit quas! Ratione atque eum, reprehenderit harum nisi repellat vero enim et sit sed? Obcaecati explicabo adipisci distinctio iste nisi ullam culpa totam ipsum eum dicta at provident, ratione possimus hic incidunt ut animi voluptate cumque quam laboriosam veniam debitis? Hic minus iste facere deleniti, perspiciatis ea eos eligendi incidunt labore distinctio voluptatem quaerat recusandae? Distinctio, explicabo magnam repudiandae veritatis dolores sed! Fuga incidunt esse eum libero! Nisi odio magni nemo assumenda architecto voluptates minus? Ducimus corporis inventore voluptatum et magni doloremque consequuntur hic! Error asperiores fuga veniam quis consectetur, natus facilis illum, repudiandae, nulla quisquam dicta impedit cum voluptate obcaecati aperiam labore laborum officiis rerum magni! Sapiente alias natus sunt fuga, aspernatur fugiat sed nulla molestias!
-        </div>
-    )
-}
+  const { setIsLoadingState } = useContext(loginContext);
 
-export default Home
+  document.title = "Home | CodeWar";
+
+  useEffect(() => {
+    setIsLoadingState(false);
+  }, []);
+
+  return (
+    <div className="home-main-container">
+      <div className="home-container">
+        <div className="home-container-txt">
+          <h1>A New Way to Learn</h1>
+          <p>
+            <span>
+              CodeWar is the best platform to help you enhance your skills,
+              expand your knowledge and prepare for technical interviews.
+            </span>
+          </p>
+          <button className="cbtn">Create Account</button>
+        </div>
+        <div className="container-img">
+          <img src={home} alt="Home" className="wp"></img>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <div className="flip-card-container">
+        <div className="flip-card-container1">
+          <div className="flip-card">
+            <div className="filp-card-front">
+              <h2>Questions, Community & Contests</h2>
+              <div className="flip-card-1-icon-container">
+                <BsFillQuestionCircleFill className="filp-icons" />
+                <FaUsers className="filp-icons" />
+                <GiTrophyCup className="filp-icons" />
+              </div>
+              <br />
+            </div>
+            <div className="filp-card-back">
+              <p>
+                <span>
+                  Over 2200 questions for you to practice. Come and join one of
+                  the largest tech communities with hundreds of thousands of
+                  active users and participate in our contests to challenge
+                  yourself and earn rewards.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flip-card-container2">
+          <div className="flip-card">
+            <div className="filp-card-front">
+              <h2>Developer</h2>
+              <MdDeveloperMode className="filp-icons" />
+            </div>
+            <div className="filp-card-back">
+              <p>
+                <span>
+                  We now support 14 popular coding languages. At our core,
+                  CodeWar is about developers. Our powerful development tools
+                  such as Playground help you test, debug and even write your
+                  own projects online.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="count-up-container">
+        <div className="Count-up">
+          <h2>
+            <FaUserFriends
+              style={{
+                color: "#3CB371",
+              }}
+              className="Countup-icons"
+            />
+          </h2>
+          <h1>
+            <CountUp start={0} end={200} duration={20} />
+          </h1>
+          <h4>Users</h4>
+        </div>
+        <div className="Count-up">
+          <h2>
+            <BsFillQuestionSquareFill
+              style={{
+                color: "#BC8F8F",
+              }}
+              className="Countup-icons"
+            />
+          </h2>
+          <h1>
+            <CountUp start={0} end={100} duration={20} />
+          </h1>
+          <h4>Questions</h4>
+        </div>
+        <div className="Count-up">
+          <h2>
+            <GiTrophiesShelf
+              style={{
+                color: "FFD700",
+              }}
+              className="Countup-icons"
+            />
+          </h2>
+          <h1>
+            <CountUp start={0} end={100} duration={20} />
+          </h1>
+          <h4>Contests</h4>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

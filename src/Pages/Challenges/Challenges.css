@@ -19,6 +19,9 @@
 .check-box-container {
   width: 20%;
   padding: 1.1rem 3rem 0.5rem 0rem;
+  position: sticky;
+  height: fit-content;
+  top: 58px;
 }
 
 /* Right side text box css */

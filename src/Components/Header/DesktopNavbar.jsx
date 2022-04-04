@@ -16,6 +16,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import QueuePlayNextOutlinedIcon from "@mui/icons-material/QueuePlayNextOutlined";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsMoon } from "react-icons/bs";
+import { auth } from "../../Firebase/Firebase";
 
 const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
   const {
@@ -28,6 +29,9 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
     activeTab,
     anchorEl,
     logOut,
+    gotoPlayground,
+    gotoProfile,
+    score,
   } = HeaderLogic();
 
   const userprofileAndDropDown = () => {
@@ -46,7 +50,7 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
           <ListItemIcon className="list-item-icon">
             <PersonOutlineIcon className="person-icon" />
           </ListItemIcon>
-          <p className="list-item-text">shreyas</p>
+          <p className="list-item-text">{auth.currentUser.displayName}</p>
           {open ? (
             <ExpandLess className="expand-less-icon" />
           ) : (
@@ -71,13 +75,25 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
         >
           <MenuItem onClick={handleClose} className="list-button" disableRipple>
             <Button variant="contained" color="primary" className="score-btn">
-              Score: 5000
+              Score: {score}
             </Button>
           </MenuItem>
-          <MenuItem onClick={handleClose} className="list-button">
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              gotoProfile();
+            }}
+            className="list-button"
+          >
             <p className="list-text">Profile</p>
           </MenuItem>
-          <MenuItem onClick={handleClose} className="list-button">
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              gotoPlayground();
+            }}
+            className="list-button"
+          >
             <p className="list-text">My playgroud</p>
           </MenuItem>
           <MenuItem
@@ -103,13 +119,12 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
       <div className="header-logo">
         <Link to="/">
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/logo6.png?alt=media&token=f4888329-9045-4048-aff5-c6437090971d"
+            src="https://firebasestorage.googleapis.com/v0/b/codewar-project-2022.appspot.com/o/Logo.svg?alt=media&token=6d889c90-3c92-4f71-860a-f94ddf636275"
             alt="Logo"
           />
         </Link>
       </div>
       <div className="appbar-tab">
-        {/* <Link key={index} to={`/${element.URL}`} className="appbar-links"> */}
         {HomePageURL.map((element, index) => {
           return (
             <Link
@@ -141,7 +156,14 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
         </div>
         <div className="icon-container">
           {/* Playground icon */}
-          <QueuePlayNextOutlinedIcon className="playground-icon" />
+          <QueuePlayNextOutlinedIcon
+            className={
+              activeTab === "playground"
+                ? "playground-icon active-tab"
+                : "playground-icon"
+            }
+            onClick={gotoPlayground}
+          />
         </div>
         <div className="search-box-container">
           {/* searchbox design */}

@@ -12,8 +12,12 @@
 
 .header-logo-mobile {
   height: 1.7rem;
-  width: 2.6rem;
-  margin: 0.5rem 0;
+  width: 5rem;
+}
+
+.theme-icons-container {
+  padding: 0.5rem;
+  color: var(--text-color) !important;
 }
 
 .header-logo-mobile img {
@@ -24,8 +28,14 @@
 .mobile-bars {
   height: 1.35rem !important;
   width: 1.3rem !important;
-  margin-left: 0.6rem;
+  margin: 0 0.6rem;
   color: var(--text-color);
+}
+
+.mobile-active-tab {
+  color: var(--hover-color) !important;
+  position: relative;
+  transition: all .2s linear;
 }
 
 .drawer-box {
@@ -42,13 +52,8 @@
   background-color: var(--transparent-color) !important;
   backdrop-filter: blur(4px);
   height: 90% !important;
-  top: 69px !important;
+  top: 67px !important;
 }
-
-/* .MuiDrawer-paperAnchorLeft {
-    max-width: 70%;
-    min-width: 60%;
-} */
 
 .MuiDrawer-paperAnchorDockedLeft {
   height: 50% !important;

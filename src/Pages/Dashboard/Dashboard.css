@@ -11,7 +11,7 @@
   color: var(--text-color);
 }
 
-.certificate-heading {
+.dashboard-certificate-heading {
   margin: 1rem 3.5rem 1.5rem 0rem;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -21,13 +21,14 @@
 .certification-card-container {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  /* margin: 0 4rem; */
   gap: 1.5rem;
   box-sizing: border-box;
 }
 
 .language-card-container:hover {
-  box-shadow: 0 0 15px var(--box-shadow);
+  box-shadow: 0 0 15px var(--hover-color);
+  border: 1px solid var(--hover-color);
+  box-sizing: border-box;
 }
 
 .language-list {
@@ -92,7 +93,7 @@
     /* margin: 1rem 0 0 1.2rem; */
   }
   .language-container {
-    margin: 0.6rem 0;  
+    margin: 0.6rem 0;
   }
   .language-card-container {
     width: 100%;

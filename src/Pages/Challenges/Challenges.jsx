@@ -2,12 +2,21 @@ import React from "react";
 import QuestionCard from "../../Components/QuestionCard/QuestionCard";
 import Checkbox from "@mui/material/Checkbox";
 import "./Challenges.css";
-import { FormControlLabel } from "@mui/material";
+import { FormControlLabel, Skeleton } from "@mui/material";
 import ChallengesLogic from "./ChallengesLogic";
 import SubHeader from "../../Components/SubHeader/SubHeader";
 
 const Challenges = () => {
-  const { languageList, languageName, playWithFrdBtn } = ChallengesLogic();
+  const {
+    languageList,
+    languageName,
+    playWithFrdBtn,
+    solvedQuestions,
+    checkboxOnChangeHandler,
+    isSkeletonLoading,
+  } = ChallengesLogic();
+
+  document.title = `${languageName} questions | CodeWar`;
 
   return (
     <>
@@ -26,19 +35,53 @@ const Challenges = () => {
       <div className="challenge-container">
         <div className="all-challenge-card-container">
           {languageList ? (
-            Object.keys(languageList)
-              .map((id) => {
+            isSkeletonLoading ? (
+              <>
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                style={{ margin: "1rem 0" }}
+                height={140}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                style={{ margin: "1rem 0" }}
+                height={140}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                style={{ margin: "1rem 0" }}
+                height={140}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                style={{ margin: "1rem 0" }}
+                height={140}
+              />
+              </>
+            ) : (
+              Object.keys(languageList).map((id) => {
+                let questionStatus = "none";
+                if (solvedQuestions) {
+                  if (solvedQuestions[id]) {
+                    questionStatus = solvedQuestions[id].status;
+                  }
+                }
                 return (
                   <QuestionCard
                     key={id}
                     data={languageList[id]}
                     languageName={languageName}
                     id={id}
+                    questionStatus={questionStatus}
                     playWithFrdBtn={() => playWithFrdBtn(id, languageName)}
                   />
                 );
               })
-              .reverse()
+            )
           ) : (
             <h5 className="error-msg">Ohh..Noo!! Nothing to show.</h5>
           )}
@@ -50,34 +93,19 @@ const Challenges = () => {
               <p className="status-lable">STATUS</p>
               <div>
                 <FormControlLabel
-                  control={<Checkbox className="check-box" />}
+                  control={<Checkbox className="check-box" id="unsolved" />}
                   label="Unsolved"
                   className="check-box"
+                  onChange={checkboxOnChangeHandler}
                 />
               </div>
               <div>
                 <FormControlLabel
-                  control={<Checkbox className="check-box" />}
+                  control={<Checkbox className="check-box" id="solved" />}
                   label="Solved"
+                  name="solved"
                   className="check-box"
-                />
-              </div>
-            </div>
-
-            <div className="skill-container">
-              <p className="skill-lable">SKILLS</p>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox className="check-box" />}
-                  label="C (Basic)"
-                  className="check-box"
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox className="check-box" />}
-                  label="C (Intermediate)"
-                  className="check-box"
+                  onChange={checkboxOnChangeHandler}
                 />
               </div>
             </div>
@@ -86,23 +114,26 @@ const Challenges = () => {
               <p className="difficulty-lable">DIFFICULTY</p>
               <div>
                 <FormControlLabel
-                  control={<Checkbox className="check-box" />}
+                  control={<Checkbox className="check-box" id="easy" />}
                   label="Easy"
                   className="check-box"
+                  onChange={checkboxOnChangeHandler}
                 />
               </div>
               <div>
                 <FormControlLabel
-                  control={<Checkbox className="check-box" />}
+                  control={<Checkbox className="check-box" id="medium" />}
                   label="Medium"
                   className="check-box"
+                  onChange={checkboxOnChangeHandler}
                 />
               </div>
               <div>
                 <FormControlLabel
-                  control={<Checkbox className="check-box" />}
+                  control={<Checkbox className="check-box" id="hard" />}
                   label="Hard"
                   className="check-box"
+                  onChange={checkboxOnChangeHandler}
                 />
               </div>
             </div>
