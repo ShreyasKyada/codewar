@@ -2,6 +2,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import appRef, { auth } from "./Firebase";
 
@@ -60,4 +62,22 @@ export const login = async (loginData) => {
   }
 
   return loginError;
+};
+
+export const loginWithGoogleClickHandler = async () => {
+  let googleProvider = new GoogleAuthProvider();
+  await signInWithPopup(auth, googleProvider).then(async (result) => {
+    // console.log(result);
+    await appRef.child(`users_info/${result.user.uid}`).set({
+      verification_status: false,
+      about: {
+        more_about: "none",
+        current: "none",
+        graduation_year: "none",
+      },
+      email: result.user.email,
+      username: result.user.displayName,
+      score: 0,
+    });
+  });
 };

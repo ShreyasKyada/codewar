@@ -36,7 +36,7 @@ const ProfileLogic = () => {
       });
 
     appRef
-      .child(`users_info/${auth.currentUser.uid}/contest_history`)
+      .child(`users_info/${auth.currentUser.uid}/all_contest`)
       .on("value", (snapshot) => {
         setContestHistory(snapshot.val());
       });

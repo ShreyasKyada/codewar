@@ -14,7 +14,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import QueuePlayNextOutlinedIcon from "@mui/icons-material/QueuePlayNextOutlined";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { BsMoon } from "react-icons/bs";
 import { auth } from "../../Firebase/Firebase";
 
@@ -32,6 +32,10 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
     gotoPlayground,
     gotoProfile,
     score,
+    searchingInQuestion,
+    isOpenSearchBox,
+    setIsOpenSearchBox,
+    searchBoxData,
   } = HeaderLogic();
 
   const userprofileAndDropDown = () => {
@@ -172,7 +176,41 @@ const DesktopNavbar = ({ validUser, isDarkMode, isLoadingState }) => {
               {/* <SearchOutlinedIcon className="search-icon" /> */}
               <AiOutlineSearch className="search-icon" />
             </div>
-            <input className="search-box" type="text" placeholder="Search..." />
+            {isOpenSearchBox && (
+              <div className="search-result-box">
+                <div>
+                  <AiOutlineClose
+                    className="search-close-icon"
+                    onClick={() => setIsOpenSearchBox(false)}
+                  />
+                </div>
+                {Object.keys(searchBoxData).length > 0 ? (
+                  Object.keys(searchBoxData).map((id) => {
+                    return (
+                      <Link
+                        to={`question-show/${searchBoxData[id].languageName}/${id}`}
+                        className="router-links"
+                        key={id}
+                        onClick={() => setIsOpenSearchBox(false)}
+                      >
+                        <p>{searchBoxData[id].heading}</p>
+                      </Link>
+                    );
+                  })
+                ) : (
+                  <h2 style={{ textAlign: "center" }}>Nothing to show..</h2>
+                )}
+              </div>
+            )}
+            <input
+              className="search-box"
+              type="text"
+              placeholder="Search..."
+              onChange={(event) => {
+                searchingInQuestion(event);
+              }}
+              onFocus={() => setIsOpenSearchBox(true)}
+            />
           </div>
         </div>
       </div>

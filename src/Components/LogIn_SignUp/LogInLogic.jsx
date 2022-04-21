@@ -1,6 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { loginContext } from "../../Context/LoginContext";
-import { createAnAccount, login } from "../../Firebase/Authentication";
+import {
+  createAnAccount,
+  login,
+  loginWithGoogleClickHandler,
+} from "../../Firebase/Authentication";
 
 const LoginLogic = () => {
   //Hooks
@@ -107,6 +111,10 @@ const LoginLogic = () => {
     });
   };
 
+  const googleSignIn = () => {
+    loginWithGoogleClickHandler();
+  };
+
   return {
     tabValue,
     handleChange,
@@ -119,7 +127,8 @@ const LoginLogic = () => {
     hideSnackbar,
     loginFun,
     getLoginData,
-    isLoadingState
+    isLoadingState,
+    googleSignIn,
   };
 };
 

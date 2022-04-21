@@ -20,6 +20,7 @@ const LogIn = () => {
     loginFun,
     getLoginData,
     isLoadingState,
+    googleSignIn,
   } = LoginLogic();
 
   return (
@@ -114,7 +115,11 @@ const LogIn = () => {
         </TabContext>
         <p className="separator">OR</p>
         <div className="login-options-container">
-          <Button variant="outlined" className="google-btn">
+          <Button
+            variant="outlined"
+            className="google-btn"
+            onClick={googleSignIn}
+          >
             <img src={googleIcon} className="google-logo" alt="logo" />
             Log in with Google
           </Button>

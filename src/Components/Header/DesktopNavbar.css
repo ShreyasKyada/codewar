@@ -17,7 +17,7 @@
 .active-tab {
   color: var(--hover-color) !important;
   position: relative;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }
 
 .active-tab::after {
@@ -110,6 +110,7 @@
   display: flex;
   padding: 0.18rem 0.25rem;
   transition: all 0.2s linear;
+  position: relative;
 }
 
 .search-icon {
@@ -118,6 +119,36 @@
   height: 100%;
   font-size: 0.75rem;
   color: var(--text-color);
+}
+
+.search-result-box {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--mode);
+  color: var(--text-color);
+  width: 15rem;
+  padding: 20px;
+  border: 2px solid var(--glass-border-color);
+}
+
+.search-result-box::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  height: auto;
+  right: 0px;
+  width: 5px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  box-sizing: border-box;
+  border-bottom: 16px solid var(--transparent-color);
+}
+
+.search-close-icon {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .search-box {

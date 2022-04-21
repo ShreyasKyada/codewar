@@ -44,14 +44,14 @@ const Playground = () => {
     playgroundData
   } = PlaygroundLogic();
 
-  document.title = `Playground | CodeWar`;
-
+  
   const { setActiveTab } = useContext(loginContext);
-
+  
   useEffect(() => {
     let cleanUp = true;
-    if (cleanUp) setActiveTab("playground");
-
+    if (cleanUp) setActiveTab("Playground");
+    
+    document.title = `Playground | CodeWar`;
     return () => (cleanUp = false);
   }, []);
 

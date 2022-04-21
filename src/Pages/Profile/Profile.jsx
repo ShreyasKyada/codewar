@@ -110,7 +110,9 @@ const Profile = () => {
       </Dialog>
       <div className="profile-details-container">
         <div className="profile-icons-container">
-          <Avatar className="profile-txt-avatar">{auth.currentUser.displayName.charAt(0)}</Avatar>
+          <Avatar className="profile-txt-avatar">
+            {auth.currentUser.displayName.charAt(0)}
+          </Avatar>
         </div>
         <div className="profile-name-container">
           <h5 className="profile-name">{auth.currentUser.displayName}</h5>
@@ -349,7 +351,7 @@ const Profile = () => {
               <BsTrophy className="submission-icon" />
               <h5 className="submission-txt">Contest</h5>
             </div>
-
+            {console.log(contestHistory)}
             {Object.values(contestHistory).map((val) => {
               return (
                 <p className="submission-p" key={Math.random()}>

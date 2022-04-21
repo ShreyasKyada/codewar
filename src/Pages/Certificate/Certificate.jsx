@@ -34,7 +34,7 @@ const Certificate = () => {
                   />
                 </Link>
               );
-            }).reverse()
+            })
           ) : (
             <h5 className="error-msg">Ohh..Noo!! Nothing to show.</h5>
           )}

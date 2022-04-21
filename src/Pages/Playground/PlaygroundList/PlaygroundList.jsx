@@ -18,14 +18,16 @@ import {
 const PlaygroundList = () => {
   const [playgroundCardList, setPlaygroundCardList] = useState({});
   const navigate = useNavigate();
-  const { setIsLoadingState } = useContext(loginContext);
+  const { setIsLoadingState, setActiveTab } = useContext(loginContext);
   const [isOpenDialogBox, setIsOpenDialogBox] = useState(false);
+  const [isOpenDialogBoxShare, setIsOpenDialogBoxShare] = useState(false);
+  const [shareLink, setShareLink] = useState("");
   const [isAgreeState, setIsAgreeState] = useState(false);
   const [deleteId, setDeleteId] = useState("");
 
-  document.title = `Playground | CodeWar`;
-
   useEffect(() => {
+    document.title = `Playground | CodeWar`;
+    setActiveTab("Playground");
     if (playgroundCardList) {
       setIsLoadingState(true);
       appRef
@@ -60,6 +62,15 @@ const PlaygroundList = () => {
     setIsAgreeState(true);
   };
 
+  const playgroundShare = (id) => {
+    setIsOpenDialogBoxShare(true);
+    setShareLink(`${window.location.href}/${id}`);
+  };
+
+  const handleDialogBoxShareClose = () => {
+    setIsOpenDialogBoxShare(false);
+  };
+
   return (
     <div className="playgroundlist-container">
       <Dialog
@@ -81,6 +92,18 @@ const PlaygroundList = () => {
             Yes
           </Button>
         </DialogActions>
+      </Dialog>
+      <Dialog
+        open={isOpenDialogBoxShare}
+        onClose={handleDialogBoxShareClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {shareLink}
+          </DialogContentText>
+        </DialogContent>
       </Dialog>
       <div className="playgroundlist-sub-container">
         <div className="playground-title">
@@ -124,7 +147,10 @@ const PlaygroundList = () => {
                       className="playground-icon"
                       onClick={() => playgroundEdit(id)}
                     />
-                    <ShareIcon className="playground-icon" />
+                    <ShareIcon
+                      className="playground-icon"
+                      onClick={() => playgroundShare(id)}
+                    />
                   </div>
                 </div>
               );
